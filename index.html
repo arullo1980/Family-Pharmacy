@@ -4,47 +4,123 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Family Pharmacy - Glendale, NY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Open Sans', sans-serif;
       margin: 0; padding: 0;
       background: #f9f9f9;
       color: #333;
+      line-height: 1.6;
     }
     header {
       background: #0074a2;
       color: white;
       padding: 1rem;
       text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 2px;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1588776814546-0a7a3a1a7a3a?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 0 0 10px rgba(0,0,0,0.7);
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
     }
     main {
       max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+      margin: -100px auto 2rem;
       background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
       border-radius: 8px;
+      padding: 2rem;
     }
     section {
       margin-bottom: 2rem;
     }
     h2 {
-      border-bottom: 2px solid #0074a2;
+      border-bottom: 3px solid #0074a2;
       padding-bottom: 0.3rem;
       margin-bottom: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      color: #0074a2;
     }
     ul {
       list-style: none;
       padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
     ul li {
-      margin-bottom: 0.5rem;
+      background: #e6f0f7;
+      padding: 0.7rem 1rem;
+      border-radius: 20px;
+      flex: 1 1 45%;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: #004a75;
+      transition: background 0.3s ease;
+      cursor: default;
+    }
+    ul li:hover {
+      background: #0074a2;
+      color: white;
+    }
+    ul li svg {
+      fill: currentColor;
+      width: 20px;
+      height: 20px;
+    }
+    #contact p {
+      margin: 0.3rem 0;
+    }
+    .btn {
+      display: inline-block;
+      background: #0074a2;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      margin-top: 1rem;
+    }
+    .btn:hover {
+      background: #005f7a;
+    }
+    #testimonials {
+      background: #f0f8ff;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+    }
+    .testimonial {
+      margin-bottom: 1rem;
+      font-style: italic;
+      border-left: 4px solid #0074a2;
+      padding-left: 1rem;
+      color: #004a75;
     }
     footer {
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
       color: #666;
+      background: #f1f1f1;
     }
     iframe {
       width: 100%;
@@ -56,13 +132,17 @@
 </head>
 <body>
   <header>
-    <h1>Family Pharmacy</h1>
-    <p>Glendale, New York</p>
+    Family Pharmacy
   </header>
+  <div class="hero">
+    <h1>Family Pharmacy</h1>
+    <p>Your trusted local pharmacy in Glendale, NY</p>
+  </div>
   <main>
     <section id="about">
       <h2>About Us</h2>
       <p>Family Pharmacy Inc is a trusted local pharmacy serving the Glendale community with care and dedication. We offer a wide range of pharmacy services including Medicare, delivery, durable medical equipment, compounding, and more.</p>
+      <a href="#contact" class="btn">Contact Us</a>
     </section>
     <section id="hours">
       <h2>Hours</h2>
@@ -75,13 +155,37 @@
     <section id="services">
       <h2>Services</h2>
       <ul>
-        <li>Medicare</li>
-        <li>Delivery</li>
-        <li>Durable Medical Equipment</li>
-        <li>Compounding</li>
-        <li>Medicaid</li>
-        <li>Handicapped Accessible</li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/></svg>
+          Medicare
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/></svg>
+          Delivery
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/></svg>
+          Durable Medical Equipment
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/></svg>
+          Compounding
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/></svg>
+          Medicaid
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/></svg>
+          Handicapped Accessible
+        </li>
       </ul>
+    </section>
+    <section id="testimonials">
+      <h2>What Our Customers Say</h2>
+      <div class="testimonial">"Friendly staff and excellent service! Highly recommend Family Pharmacy." – Sarah M.</div>
+      <div class="testimonial">"They always go above and beyond to help with my prescriptions." – John D.</div>
+      <div class="testimonial">"Convenient location and great delivery options." – Emily R.</div>
     </section>
     <section id="contact">
       <h2>Contact Info</h2>
