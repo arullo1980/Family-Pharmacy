@@ -47,18 +47,22 @@ jobs:
           CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           PROJECT: wallet-partners-dr
         run: |
-          set -euo pipefail
+          set -uo pipefail
+          auth=(-H "Authorization: Bearer ${CF_API_TOKEN}" -H "Content-Type: application/json")
+          echo "Token check:"
+          curl -sS "${auth[@]}" https://api.cloudflare.com/client/v4/user/tokens/verify | sed 's/"id":"[^"]*"/"id":"***"/'
+          echo
           api="https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/pages/projects"
-          code=$(curl -sS -o /tmp/proj.json -w '%{http_code}' -H "Authorization: Bearer ${CF_API_TOKEN}" "${api}/${PROJECT}")
-          if [ "$code" = "404" ]; then
-            echo "Creating Pages project ${PROJECT}"
-            curl -sS -f -X POST -H "Authorization: Bearer ${CF_API_TOKEN}" -H "Content-Type: application/json" \
-              -d "{\"name\":\"${PROJECT}\",\"production_branch\":\"main\"}" "${api}" > /dev/null
-          elif [ "$code" != "200" ]; then
-            echo "Cloudflare API returned ${code}"; cat /tmp/proj.json; exit 1
-          else
-            echo "Pages project ${PROJECT} already exists"
-          fi
+          code=$(curl -sS -o /tmp/proj.json -w '%{http_code}' "${auth[@]}" "${api}/${PROJECT}")
+          echo "GET project -> HTTP ${code}"
+          if [ "$code" = "200" ]; then echo "Pages project ${PROJECT} already exists"; exit 0; fi
+          cat /tmp/proj.json; echo
+          echo "Creating Pages project ${PROJECT}"
+          code=$(curl -sS -o /tmp/create.json -w '%{http_code}' -X POST "${auth[@]}" \
+            -d "{\"name\":\"${PROJECT}\",\"production_branch\":\"main\"}" "${api}")
+          echo "POST project -> HTTP ${code}"
+          cat /tmp/create.json; echo
+          [ "$code" = "200" ] || [ "$code" = "201" ] || { echo "::error::Could not create the Pages project. Check the token permissions (Account > Cloudflare Pages > Edit, Account Resources = your account) and the account ID."; exit 1; }
       - name: Deploy to Cloudflare Pages
         if: steps.cf.outputs.enabled == 'true'
         uses: cloudflare/wrangler-action@v3
