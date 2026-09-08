@@ -21,7 +21,7 @@ jobs:
       - name: Build site
         run: python3 build.py
         env:
-          SITE_URL: ${{ vars.SITE_URL || 'https://walletpartners.do' }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://bomberopartners.com.do' }}
       - name: Sanity checks
         run: |
           test -f site/index.html

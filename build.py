@@ -13,7 +13,7 @@ SRC = ROOT / "src" / "pages"
 SITE = ROOT / "site"
 DATA = ROOT / "data" / "estaciones_poligono_central.xlsx"
 
-SITE_URL = os.environ.get("SITE_URL", "https://walletpartners.do").rstrip("/")
+SITE_URL = os.environ.get("SITE_URL", "https://bomberopartners.com.do").rstrip("/")
 COMPANY = "Wallet Partners LLC"
 CONTACT_EMAIL = "info@walletpartnersllc.com"
 TODAY = datetime.date.today().isoformat()
