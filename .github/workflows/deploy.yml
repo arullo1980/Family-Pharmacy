@@ -25,9 +25,9 @@ jobs:
       - name: Sanity checks
         run: |
           test -f site/index.html
-          test -f site/stations/index.html
+          test -f site/zona/index.html && test -f site/en/index.html
           test -f site/sitemap.xml
-          grep -q "WP_STATIONS" site/stations/index.html
+          grep -q "WP_STATIONS" site/zona/index.html
       - name: Check whether Cloudflare secrets are configured
         id: cf
         env:
