@@ -5,6 +5,6 @@
 
 /* SITE */
   Standards: HTML5, CSS3, ES5-compatible JavaScript
-  Components: Leaflet 1.9.4 (self-hosted), CARTO Voyager basemap, OpenStreetMap data
+  Components: Leaflet 1.9.4 (self-hosted), OpenStreetMap data
   Hosting: Cloudflare Pages
   Build: python3 build.py (static, no framework)
