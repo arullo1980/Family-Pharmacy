@@ -86,8 +86,29 @@ NAV = [
     ("/zona/", "Zona de lanzamiento"), ("/preguntas/", "Preguntas"), ("/bancos/", "Bancos y aliados"),
 ]
 NAV_EN = [
-    ("/en/", "For banks & partners"), ("/zona/", "Launch zone map"), ("/contacto/", "Contact"),
+    ("/en/", "Home"), ("/en/how-it-works/", "How it works"), ("/en/pricing/", "Pricing"),
+    ("/en/launch-zone/", "Launch zone"), ("/en/faq/", "FAQ"), ("/en/banks/", "Banks & partners"),
 ]
+CHROME = {
+    "es": dict(skip="Ir al contenido", tagline="Pagos para estaciones de combustible · RD", menu="Menú", nav="Principal",
+               cta='<a class="cta" href="/afiliese/">Afilie su estación</a>',
+               cookie='Este sitio no usa cookies de publicidad ni de analítica. Guarda una sola preferencia en su navegador para recordar que vio este aviso. <a href="/legal/cookies/">Aviso de cookies</a>', ok="Entendido",
+               f_about="Aceptación de tarjetas, comercio registrado y liquidación diseñados para estaciones de combustible en la República Dominicana, operados bajo la supervisión de un banco patrocinador y las reglas de las redes de tarjetas.",
+               f_cols=[("Estaciones", [("/como-funciona/", "Cómo funciona"), ("/precios/", "Precios"), ("/zona/", "Zona de lanzamiento"), ("/preguntas/", "Preguntas frecuentes"), ("/afiliese/", "Afilie su estación")]),
+                       ("Empresa", [("/bancos/", "Bancos y aliados"), ("/nosotros/", "Nosotros"), ("/contacto/", "Contacto"), ("/en/", "English version"), ("/.well-known/security.txt", "security.txt")]),
+                       ("Legal", [("/legal/privacidad/", "Privacidad"), ("/legal/terminos/", "Términos de uso"), ("/legal/cookies/", "Cookies"), ("/legal/cumplimiento/", "Cumplimiento"), ("/legal/aviso-legal/", "Aviso legal"), ("/legal/accesibilidad/", "Accesibilidad")])],
+               disclaimer="Wallet Partners LLC no es un banco. Los servicios de aceptación de tarjetas se prestan bajo el patrocinio de una entidad financiera miembro autorizada; las condiciones definitivas se establecen en el contrato de afiliación. Las marcas de combustible mencionadas pertenecen a sus titulares y se citan solo para identificar ubicaciones. Las cifras de mercado provienen de fuentes públicas citadas.",
+               rights="Todos los derechos reservados.", place="Santo Domingo · Estados Unidos"),
+    "en": dict(skip="Skip to content", tagline="Fuel-station payments · Dominican Republic", menu="Menu", nav="Primary",
+               cta='<a class="cta" href="/en/sign-up/">Sign up your station</a>',
+               cookie='This site uses no advertising or analytics cookies. It stores one preference in your browser to remember that you have seen this notice. <a href="/en/legal/cookies/">Cookie notice</a>', ok="OK",
+               f_about="Card acceptance, merchant-of-record and settlement services designed for gasoline stations in the Dominican Republic, operated under the oversight of a sponsoring bank and card-network rules.",
+               f_cols=[("Stations", [("/en/how-it-works/", "How it works"), ("/en/pricing/", "Pricing"), ("/en/launch-zone/", "Launch zone"), ("/en/faq/", "FAQ"), ("/en/sign-up/", "Sign up your station")]),
+                       ("Company", [("/en/banks/", "Banks & partners"), ("/en/about/", "About"), ("/en/contact/", "Contact"), ("/", "Versión en español"), ("/.well-known/security.txt", "security.txt")]),
+                       ("Legal", [("/en/legal/privacy/", "Privacy"), ("/en/legal/terms/", "Terms of use"), ("/en/legal/cookies/", "Cookies"), ("/en/legal/compliance/", "Compliance"), ("/en/legal/notice/", "Legal notice"), ("/en/legal/accessibility/", "Accessibility")])],
+               disclaimer="Wallet Partners LLC is not a bank. Card-acceptance services are provided under the sponsorship of a licensed member financial institution; final terms are set in the merchant agreement. Fuel brands mentioned belong to their owners and appear only to identify locations. Market figures come from the public sources cited.",
+               rights="All rights reserved.", place="Santo Domingo · United States"),
+}
 LOGO = """<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="8" width="36" height="26" rx="6" fill="#0f2440"/><rect x="2" y="14" width="36" height="6" fill="#eda100"/><circle cx="29" cy="26" r="4" fill="#2a78d6"/><circle cx="24" cy="26" r="4" fill="#eda100" opacity=".9"/></svg>"""
 
 def layout(page, body, stations_json=None):
@@ -98,8 +119,10 @@ def layout(page, body, stations_json=None):
     nav = "".join(
         '<a href="%s"%s>%s</a>' % (href, ' aria-current="page"' if href == path else '', label) for href, label in items
     )
-    cta = '<a class="cta" href="/afiliese/">Afilie su estación</a>' if lang != "en" else '<a class="cta" href="/contacto/">Contact us</a>'
-    lang_link = '<a href="/en/" lang="en">English</a>' if lang != "en" else '<a href="/" lang="es">Español</a>'
+    ch = CHROME[lang]
+    cta = ch["cta"]
+    alt = page.get("alt")
+    lang_link = (f'<a href="{alt}" lang="en" hreflang="en">English</a>' if lang != "en" else f'<a href="{alt}" lang="es" hreflang="es">Español</a>') if alt else ""
     head_extra = page.get("head", "")
     scripts = ""
     if page.get("map"):
@@ -110,8 +133,10 @@ def layout(page, body, stations_json=None):
     og_image = SITE_URL + page.get("image", "/assets/img/hero-station.jpg")
     title = html.escape(page["title"])
     desc = html.escape(page["description"])
-    es_alt = f'\n  <link rel="alternate" hreflang="en" href="{SITE_URL}/en/" />' if path == "/" else ""
-    en_alt = f'\n  <link rel="alternate" hreflang="es" href="{SITE_URL}/" />' if path == "/en/" else ""
+    other = "en" if lang == "es" else "es"
+    es_alt = (f'\n  <link rel="alternate" hreflang="{lang}" href="{url}" />\n  <link rel="alternate" hreflang="{other}" href="{SITE_URL}{alt}" />'
+              f'\n  <link rel="alternate" hreflang="x-default" href="{SITE_URL}{alt if lang == "en" else path}" />') if alt else ""
+    en_alt = ""
     breadcrumbs = json.dumps({
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"}] +
@@ -154,12 +179,12 @@ def layout(page, body, stations_json=None):
   <script type="application/ld+json">{breadcrumbs}</script>
 </head>
 <body>
-<a class="skip" href="#main">{'Skip to content' if lang == 'en' else 'Ir al contenido'}</a>
+<a class="skip" href="#main">{ch["skip"]}</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/">{LOGO}<span>Wallet Partners<small>Pagos para estaciones de combustible · RD</small></span></a>
-    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menú</button>
-    <nav class="nav" id="nav" aria-label="Principal">{nav}{lang_link}{cta}</nav>
+    <a class="brand" href="{'/en/' if lang == 'en' else '/'}">{LOGO}<span>Wallet Partners<small>{ch["tagline"]}</small></span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">{ch["menu"]}</button>
+    <nav class="nav" id="nav" aria-label="{ch["nav"]}">{nav}{lang_link}{cta}</nav>
   </div>
 </header>
 <main id="main">
@@ -170,32 +195,21 @@ def layout(page, body, stations_json=None):
     <div class="footer-grid">
       <div>
         <h4>{COMPANY}</h4>
-        <p>Aceptación de tarjetas, comercio registrado y liquidación diseñados para estaciones de combustible en la República Dominicana, operados bajo la supervisión de un banco patrocinador y las reglas de las redes de tarjetas.</p>
+        <p>{ch["f_about"]}</p>
         <p><a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
       </div>
-      <div>
-        <h4>Estaciones</h4>
-        <ul><li><a href="/como-funciona/">Cómo funciona</a></li><li><a href="/precios/">Precios por galón</a></li><li><a href="/zona/">Zona de lanzamiento</a></li><li><a href="/preguntas/">Preguntas frecuentes</a></li><li><a href="/afiliese/">Afilie su estación</a></li></ul>
-      </div>
-      <div>
-        <h4>Empresa</h4>
-        <ul><li><a href="/bancos/">Bancos y aliados</a></li><li><a href="/en/" lang="en">For banks &amp; partners (English)</a></li><li><a href="/nosotros/">Nosotros</a></li><li><a href="/contacto/">Contacto</a></li><li><a href="/.well-known/security.txt">security.txt</a></li></ul>
-      </div>
-      <div>
-        <h4>Legal</h4>
-        <ul><li><a href="/legal/privacidad/">Privacidad</a></li><li><a href="/legal/terminos/">Términos de uso</a></li><li><a href="/legal/cookies/">Cookies</a></li><li><a href="/legal/cumplimiento/">Cumplimiento</a></li><li><a href="/legal/aviso-legal/">Aviso legal</a></li><li><a href="/legal/accesibilidad/">Accesibilidad</a></li></ul>
-      </div>
+      {"".join(f'<div><h4>{h}</h4><ul>' + "".join(f'<li><a href="{a}">{t}</a></li>' for a, t in links) + '</ul></div>' for h, links in ch["f_cols"])}
     </div>
-    <p class="disclaimer">Wallet Partners LLC no es un banco. Los servicios de aceptación de tarjetas se prestan bajo el patrocinio de una entidad financiera miembro autorizada; las condiciones definitivas se establecen en el contrato de afiliación. Las marcas de combustible mencionadas pertenecen a sus titulares y se citan solo para identificar ubicaciones. Las cifras de mercado provienen de fuentes públicas citadas.</p>
+    <p class="disclaimer">{ch["disclaimer"]}</p>
     <div class="footer-bottom">
-      <span>© {YEAR} {COMPANY}. Todos los derechos reservados.</span>
-      <span>Santo Domingo · Estados Unidos</span>
+      <span>© {YEAR} {COMPANY}. {ch["rights"]}</span>
+      <span>{ch["place"]}</span>
     </div>
   </div>
 </footer>
 <div class="cookie" id="cookie-banner" role="dialog" aria-label="Cookie notice">
-  Este sitio no usa cookies de publicidad ni de analítica. Guarda una sola preferencia en su navegador para recordar que vio este aviso. <a href="/legal/cookies/">Aviso de cookies</a>
-  <div class="actions"><button class="btn btn-navy" id="cookie-ok">Entendido</button></div>
+  {ch["cookie"]}
+  <div class="actions"><button class="btn btn-navy" id="cookie-ok">{ch["ok"]}</button></div>
 </div>
 <script src="/assets/js/main.js" defer></script>{scripts}
 </body>

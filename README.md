@@ -2,7 +2,7 @@
 
 Two deliverables in one repository:
 
-1. **Public website** (Spanish, for gasoline-station owners, with a short bilingual page for banks and partners). Built for Cloudflare Pages.
+1. **Public website** in Spanish (`/`) and English (`/en/`), aimed at gasoline-station owners, with a one-page summary for banks and partners in each language. Every page has its counterpart linked via the language switch and `hreflang`. Built for Cloudflare Pages.
 2. **Sponsor-bank presentation** (`deck/Wallet-Partners-Sponsor-Bank-Deck.pptx`, English, 17 slides) carrying the full pitch: 2026 fee-dispute timeline, Banco Central data, launch-cohort map and station list, program design, responsibility matrix, scenario economics, compliance framework, rollout and the ask. A PDF export sits beside it.
 
 **What is on the site**
@@ -11,12 +11,13 @@ Two deliverables in one repository:
 |---|---|---|
 | `/` | Stations | Value proposition (per-gallon fee, next-day pesos, forecourt terminals, local support), how it works, launch-zone map, sign-up CTA |
 | `/como-funciona/` | Stations | Transaction flow, onboarding documents, terminals |
-| `/precios/` | Stations | Per-gallon pricing model and a calculator showing what today's percentage fee costs per gallon |
+| `/precios/` | Stations | The four pricing terms (25 bps below current contract, no monthly minimum, terminal rental, USD clearing) and a savings calculator |
 | `/zona/` | Stations | Interactive map and directory of the 20 Polígono Central stations with "¿Es su estación? Regístrela" hooks |
 | `/preguntas/` | Stations | FAQ (with FAQ structured data) |
 | `/afiliese/` | Stations | Sign-up form (posts to the Pages Function at `/api/contact`, mailto fallback) |
-| `/bancos/`, `/en/` | Banks & partners | One-page summary in Spanish and English; CTA to request the deck |
+| `/bancos/`, `/en/banks/` | Banks & partners | One-page summary in Spanish and English; CTA to request the deck |
 | `/nosotros/`, `/contacto/` | All | Company and contact form |
+| `/en/*` | All | English mirror of every page above (`/en/how-it-works/`, `/en/pricing/`, `/en/launch-zone/`, `/en/faq/`, `/en/sign-up/`, `/en/about/`, `/en/contact/`, `/en/legal/*`) |
 | `/legal/*` | All | Privacidad (Ley 172-13), términos, cookies, cumplimiento (Ley 155-17, PCI DSS, SIPARD), aviso legal, accesibilidad |
 | `robots.txt`, `sitemap.xml`, `.well-known/security.txt`, `_headers`, `_redirects`, `manifest.webmanifest` | — | Technical / hygiene files |
 
@@ -25,7 +26,7 @@ Two deliverables in one repository:
 ```
 data/estaciones_poligono_central.xlsx   source list of the 20 pipeline stations (single source of truth)
 build.py                                static site generator (Python 3, needs openpyxl)
-src/pages/*.py                          page content (one module per page) + shared helpers
+src/pages/*.py                          Spanish page modules; en_pages.py holds the English mirror; pages.py is the registry
 site/                                   BUILD OUTPUT, committed; Cloudflare Pages serves this directory
   assets/css, assets/js, assets/img     styles, scripts, AI-generated illustrative images
   assets/vendor/leaflet                 self-hosted Leaflet 1.9.4 (BSD-2-Clause)

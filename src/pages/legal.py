@@ -32,7 +32,7 @@ def terms(ctx):
     e = ctx["CONTACT_EMAIL"]
     return _page("Legal", "Términos de uso", "Condiciones para el uso de este sitio web.", f"""
 <h2>1. Aceptación</h2><p>Al usar este sitio acepta estos términos. Si no está de acuerdo, no lo utilice.</p>
-<h2>2. Finalidad</h2><p>Este sitio presenta el programa de aceptación de tarjetas de Wallet Partners LLC para estaciones de combustible en la República Dominicana. Es informativo. Nada en él constituye una oferta de servicios bancarios o financieros, una invitación a invertir ni asesoría financiera, legal o fiscal. Las condiciones definitivas del servicio se establecen únicamente en el contrato de afiliación aprobado por el banco patrocinador.</p>
+<h2>2. Finalidad</h2><p>Este sitio presenta el programa de aceptación de tarjetas de Wallet Partners LLC para estaciones de combustible en la República Dominicana. Es informativo. Nada en él constituye una oferta de servicios bancarios o financieros, una invitación a invertir ni asesoría financiera, legal o fiscal. Las condiciones definitivas del servicio (comisión, alquiler de terminal y moneda de liquidación) se establecen únicamente en el contrato de afiliación aprobado por el banco patrocinador.</p>
 <h2>3. Calculadoras y cifras</h2><p>Las calculadoras producen estimaciones a partir de los valores que usted introduce y no son cotizaciones. Las cifras de mercado se citan de fuentes públicas identificadas y pueden ser revisadas por sus autores. La información de estaciones proviene de listados públicos y puede cambiar.</p>
 <h2>4. Sin relación bancaria</h2><p>Wallet Partners LLC no es un banco, no es un intermediario financiero autorizado en la República Dominicana y no es miembro de ninguna red de tarjetas por sí misma. Los servicios se prestarán solo cuando esté vigente un acuerdo de patrocinio con una entidad financiera miembro autorizada.</p>
 <h2>5. Propiedad intelectual</h2><p>Textos, gráficos, código y el conjunto de datos de estaciones son © Wallet Partners LLC salvo indicación contraria. Los datos del mapa son © colaboradores de OpenStreetMap (ODbL) y el estilo del mapa base © CARTO. Las marcas de combustible pertenecen a sus titulares y se citan solo para identificar ubicaciones, sin implicar afiliación ni respaldo.</p>
@@ -79,7 +79,7 @@ def compliance(ctx):
 <h2>3. Monitoreo y fraude</h2>
 <ul><li>Reglas para combustibles: límites de velocidad por tarjeta y por bomba, montos máximos coherentes con la capacidad del tanque, detección de duplicados, patrones nocturnos inusuales y pruebas de tarjetas.</li><li>Seguimiento del portafolio frente a los umbrales de contracargos y fraude de las redes; alertas tempranas al banco.</li><li>Escalamiento al área de cumplimiento del banco; reporte de operaciones sospechosas a la UAF y, cuando aplique, a FinCEN.</li></ul>
 <h2>4. Fondos, liquidación y reservas</h2>
-<ul><li>La liquidación de las redes la recibe el banco patrocinador en una cuenta del programa que controla. Wallet Partners no retiene fondos de comercios fuera de esa estructura.</li><li>Liquidación a comercios el siguiente día hábil en pesos, con reservas y reglas de liberación acordadas con el banco por nivel de riesgo.</li><li>Conciliación diaria y reporte mensual al banco.</li></ul>
+<ul><li>La liquidación de las redes la recibe el banco patrocinador en una cuenta del programa que controla. Wallet Partners no retiene fondos de comercios fuera de esa estructura.</li><li>Liquidación a comercios en dólares estadounidenses, con reservas y reglas de liberación acordadas con el banco por nivel de riesgo.</li><li>Conciliación diaria y reporte mensual al banco.</li></ul>
 <h2>5. Seguridad de la información</h2>
 <ul><li>Terminales P2PE validadas; tokenización; sin almacenamiento de PAN, banda ni CVV.</li><li>Entorno en la nube segmentado, cifrado en reposo, gestión de llaves con control dual, MFA para todo acceso administrativo, registro y alertas centralizados.</li><li>Pruebas de penetración anuales, gestión de vulnerabilidades, evaluación de proveedores y plan de respuesta a incidentes con plazos de notificación acordados con el banco y conforme a la Ley 172-13.</li><li>Divulgación coordinada de vulnerabilidades vía <a href="/.well-known/security.txt">security.txt</a>.</li></ul>
 <h2>6. Gobierno</h2>
@@ -114,7 +114,7 @@ def notfound(ctx):
 <section><div class="wrap center" style="padding:60px 20px">
   <span class="eyebrow">404</span>
   <h1>Página no encontrada</h1>
-  <p class="muted">La página que buscaba no existe o cambió de dirección.</p>
-  <div class="hero-actions" style="justify-content:center"><a class="btn btn-navy" href="/">Ir al inicio</a><a class="btn btn-outline" href="/afiliese/">Afilie su estación</a></div>
+  <p class="muted">La página que buscaba no existe o cambió de dirección. <span lang="en">The page you requested does not exist.</span></p>
+  <div class="hero-actions" style="justify-content:center"><a class="btn btn-navy" href="/">Ir al inicio</a><a class="btn btn-outline" href="/afiliese/">Afilie su estación</a><a class="btn btn-outline" href="/en/" lang="en">English</a></div>
 </div></section>
 """

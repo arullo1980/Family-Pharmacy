@@ -3,7 +3,7 @@ from common import stat_tiles, icon
 def body(ctx):
     st = ctx["stats"]
     return f"""
-<div class="page-title"><div class="wrap"><span class="eyebrow">Bancos y aliados</span><h1>Un programa vertical de adquirencia para combustibles, operado bajo su patrocinio.</h1><p>Wallet Partners LLC busca un banco patrocinador, miembro de Visa y Mastercard en la República Dominicana, para lanzar un programa de facilitación de pagos dedicado a estaciones de combustible. Esta página resume el programa; la presentación completa se comparte bajo acuerdo de confidencialidad.</p><div class="meta-line"><a href="/en/" lang="en">Read this page in English</a></div></div></div>
+<div class="page-title"><div class="wrap"><span class="eyebrow">Bancos y aliados</span><h1>Un programa vertical de adquirencia para combustibles, operado bajo su patrocinio.</h1><p>Wallet Partners LLC busca un banco patrocinador, miembro de Visa y Mastercard en la República Dominicana, para lanzar un programa de facilitación de pagos dedicado a estaciones de combustible, con compensación en dólares estadounidenses. Esta página resume el programa; la presentación completa se comparte bajo acuerdo de confidencialidad.</p><div class="meta-line"><a href="/en/banks/" lang="en">Read this page in English</a></div></div></div>
 
 <section><div class="wrap">
   {stat_tiles([
@@ -15,7 +15,7 @@ def body(ctx):
 </div></section>
 
 <section class="alt"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Por qué ahora</span><h2>El segmento pidió públicamente otro modelo de precios.</h2><p>En junio y julio de 2026 la asociación de detallistas de combustible amenazó con retirar los verifones de más de 780 estaciones por comisiones porcentuales que consumen entre la cuarta y la tercera parte de un margen regulado. El Gobierno abrió un diálogo con la banca. Un programa con tarifa por galón, intercambio transparente y controles de nivel bancario ofrece al banco patrocinador una vía defendible para crecer en un segmento de alto volumen mientras los adquirentes tradicionales negocian.</p></div>
+  <div class="section-head"><span class="eyebrow">Por qué ahora</span><h2>El segmento pidió públicamente otro modelo de precios.</h2><p>En junio y julio de 2026 la asociación de detallistas de combustible amenazó con retirar los verifones de más de 780 estaciones por comisiones porcentuales que consumen entre la cuarta y la tercera parte de un margen regulado. El Gobierno abrió un diálogo con la banca. Un programa con una comisión 25 puntos básicos por debajo del contrato vigente de cada estación, sin mínimo mensual, compensación en dólares, intercambio transparente y controles de nivel bancario ofrece al banco patrocinador una vía defendible para crecer en un segmento de alto volumen mientras los adquirentes tradicionales negocian.</p></div>
   <div class="grid grid-3">
     <div class="card">{icon("bank")}<h3>Lo que hace el banco</h3><p>Membresía de las redes y BIN, aprobación de cada comercio, cuenta de liquidación del programa con reservas, supervisión de segunda línea y reporte regulatorio.</p></div>
     <div class="card">{icon("pump")}<h3>Lo que hace Wallet Partners</h3><p>Prospección y afiliación, expedientes KYB/KYC listos para revisión, terminales y soporte de campo, monitoreo de primera línea, disputas, liquidación a comercios y reporte al banco.</p></div>

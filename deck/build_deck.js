@@ -70,7 +70,7 @@ const tblRow = (cells, fs = 10) => cells.map(t => ({ text: String(t), options: {
     s.addShape(pres.ShapeType.rect, { x: 6.9, y: 0, w: 0.9, h: H, fill: { color: C.navy, transparency: 15 }, line: { color: C.navy, transparency: 100 } });
     s.addText('SPONSOR-BANK BRIEFING · DOMINICAN REPUBLIC', { x: M, y: 1.4, w: 6, h: 0.35, fontFace: FONT, fontSize: 11, bold: true, color: C.amber, charSpacing: 2, isTextBox: true, margin: 0 });
     s.addText('Card acceptance built for gasoline stations.', { x: M, y: 1.85, w: 5.9, h: 2.0, fontFace: FONT, fontSize: 40, bold: true, color: C.white, isTextBox: true, margin: 0, valign: 'top' });
-    s.addText('A per-gallon acquiring program for the Dominican Republic, operated by Wallet Partners LLC under the sponsorship of a licensed member bank.', { x: M, y: 3.95, w: 5.7, h: 1.1, fontFace: FONT, fontSize: 15, color: 'DFE7F1', isTextBox: true, margin: 0, valign: 'top' });
+    s.addText('A fuel-retail acquiring program for the Dominican Republic, cleared in US dollars and operated by Wallet Partners LLC under the sponsorship of a licensed member bank.', { x: M, y: 3.95, w: 5.7, h: 1.1, fontFace: FONT, fontSize: 15, color: 'DFE7F1', isTextBox: true, margin: 0, valign: 'top' });
     s.addText('Wallet Partners LLC  ·  September 2026  ·  Confidential', { x: M, y: 6.6, w: 6, h: 0.35, fontFace: FONT, fontSize: 11, color: 'A9B8C9', isTextBox: true, margin: 0 });
     s.addNotes('Opening. Frame the meeting: we are asking for sponsorship of a vertical acquiring program, we bring a launch cohort of 20 stations and a pricing model the segment has publicly asked for.');
   }
@@ -79,7 +79,7 @@ const tblRow = (cells, fs = 10) => cells.map(t => ({ text: String(t), options: {
     const s = base(); title(s, 'Executive summary', 'Three things to take away from this briefing');
     const cols = [
       ['FaFire', 'The moment', ['In July 2026 fuel retailers (ANADEGAS) threatened to pull card terminals from 780+ stations over 1.95–2.50% fees.', 'Those fees equal RD$6.59–8.45 per gallon: 25–36% of a State-set RD$25 gross margin.', 'Government-brokered talks with the banks are ongoing; the segment asked for per-gallon pricing.']],
-      ['FaGasPump', 'The program', ['Wallet Partners operates as payment facilitator / program manager under your membership and oversight.', 'Per-gallon pricing with a cap, interchange-plus statements, forecourt EMV/contactless terminals, next-day peso settlement.', 'Launch cohort: 20 stations in Santo Domingo\'s Polígono Central, 9 of them open 24 h.']],
+      ['FaGasPump', 'The program', ['Wallet Partners operates as payment facilitator / program manager under your membership and oversight.', 'Merchant pricing 25 bps below each station\'s current contract, no monthly minimum, terminals on monthly rental, transactions cleared in US dollars.', 'Launch cohort: 20 stations in Santo Domingo\'s Polígono Central, 9 of them open 24 h.']],
       ['FaHandshake', 'The ask', ['Sponsorship agreement and registration of Wallet Partners as payment facilitator.', 'Program settlement account with agreed reserves; merchant approval SLA of 10 business days.', 'Named relationship and compliance contacts. Target: first live station within one quarter.']],
     ];
     for (let i = 0; i < 3; i++) {
@@ -111,7 +111,7 @@ const tblRow = (cells, fs = 10) => cells.map(t => ({ text: String(t), options: {
       s.addText(e[1], { x: x - 0.95, y: y0 + 0.35, w: 1.9, h: 2.3, fontFace: FONT, fontSize: 10.5, color: C.ink2, align: 'center', isTextBox: true, margin: 0, valign: 'top' });
     });
     s.addShape(pres.ShapeType.roundRect, { x: M, y: 5.75, w: W - 2 * M, h: 1.0, rectRadius: 0.08, fill: { color: 'FFF8E6' }, line: { color: C.amber, width: 0.75 } });
-    s.addText([{ text: 'Why it matters to a sponsor. ', options: { bold: true } }, { text: 'The retailers\' own numbers show the problem is the pricing structure, not card acceptance. A per-gallon program gives a bank a defensible way to grow fuel-segment volume while the incumbents are locked in a public dispute with the segment.' }], { x: M + 0.25, y: 5.85, w: W - 2 * M - 0.5, h: 0.8, fontFace: FONT, fontSize: 12, color: C.ink, isTextBox: true, margin: 0, valign: 'middle' });
+    s.addText([{ text: 'Why it matters to a sponsor. ', options: { bold: true } }, { text: 'The retailers\' own numbers show that price, not card acceptance, is the issue. A program priced 25 bps below each station\'s current contract, with no monthly minimum, gives a bank a defensible way to grow fuel-segment volume while the incumbents are locked in a public dispute with the segment.' }], { x: M + 0.25, y: 5.85, w: W - 2 * M - 0.5, h: 0.8, fontFace: FONT, fontSize: 12, color: C.ink, isTextBox: true, margin: 0, valign: 'middle' });
     s.addNotes('Sources: Listín Diario 30 Jun 2026; Diario Libre 2, 5, 6, 7, 8 and 20 Jul 2026; Infobae 8 Jul 2026. Full list in the appendix.');
   }
   // 4. Fee vs margin chart
@@ -141,7 +141,7 @@ const tblRow = (cells, fs = 10) => cells.map(t => ({ text: String(t), options: {
     const s = base(); title(s, 'Fuel retail: regulated, price-controlled, high volume', 'A concentrated market with three incumbent acquirers and no vertical product');
     const cards = [
       ['FaStore', '≈1,025 stations', 'ANADEGAS estimate for the country; 780+ affiliated. MICM approved 33 new stations and LPG plants in 2024–Oct 2025 and keeps an open registry. Every new licence must pick an acquirer on day one.'],
-      ['FaUniversity', 'Three acquirers', 'CardNET (bank-owned), AZUL (Grupo Popular, 2014) and Visanet Dominicana. All three price fuel like any other retail category; none offers gallon-based pricing, fleet cards or forecourt integration.'],
+      ['FaUniversity', 'Three acquirers', 'CardNET (bank-owned), AZUL (Grupo Popular, 2014) and Visanet Dominicana. All three price fuel like any other retail category; none offers a fuel-specific program, fleet cards or forecourt integration.'],
       ['FaCalendarAlt', 'Weekly price setting', 'MICM publishes retail prices every week. 2025: premium RD$290.10, regular RD$272.50 per gallon. Price and margin are fixed; the percentage fee is the only cost the station cannot control.'],
     ];
     for (let i = 0; i < 3; i++) {
@@ -181,7 +181,7 @@ const tblRow = (cells, fs = 10) => cells.map(t => ({ text: String(t), options: {
     const s = base(); title(s, 'How a transaction flows', 'Wallet Partners runs the merchant side; the sponsoring bank holds membership, funds and oversight');
     const steps = [['FaCreditCard', 'Customer pays at the forecourt', 'Attendant keys the sale or the pump controller pushes it to a wireless EMV/contactless terminal. Stripe disabled by policy.'],
       ['FaNetworkWired', 'Authorisation', 'P2PE-encrypted transaction goes through our certified gateway to the bank\'s acquiring host and on to Visa, Mastercard or domestic debit under the bank\'s BINs.'],
-      ['FaUniversity', 'Settlement', 'Networks settle to the bank\'s program account. We pay each station next business day in pesos, net of the per-gallon fee.'],
+      ['FaUniversity', 'Settlement', 'Networks settle to the bank\'s program account in US dollars. We pay each station in dollars, net of the agreed rate.'],
       ['FaChartBar', 'Reporting', 'Stations reconcile by shift and pump; the bank gets portfolio dashboards, exception reports and regulatory data.'],
       ['FaShieldAlt', 'Disputes and risk', 'Chargebacks worked under network rules; per-station reserves and velocity limits protect the bank\'s exposure.']];
     const w = (W - 2 * M - 0.4 * 4) / 5;
@@ -204,8 +204,8 @@ const tblRow = (cells, fs = 10) => cells.map(t => ({ text: String(t), options: {
       ['Merchant prospecting and sales', 'Owns pipeline and station relationships', '—'],
       ['Merchant KYC/KYB and underwriting', 'Collects documents, screens owners and sanctions lists, prepares file', 'Approves, conditions or declines each merchant'],
       ['Terminals and integration', 'Supplies certified EMV/contactless terminals; installs and supports', 'Certifies terminal and gateway on its host'],
-      ['Pricing to the station', 'Sets per-gallon pricing within approved parameters', 'Approves pricing floors and interchange pass-through'],
-      ['Settlement', 'Pays stations next day from program account; maintains reserves', 'Settles network funds into program account; controls the account'],
+      ['Pricing to the station', 'Quotes 25 bps below the station\'s current contract, no monthly minimum, terminal rental', 'Approves pricing floors and interchange pass-through'],
+      ['Settlement', 'Pays stations in US dollars from program account; maintains reserves', 'Settles network funds into program account; controls the account'],
       ['Transaction monitoring and AML', 'First-line monitoring, alerts, escalation', 'Second-line review; regulatory reporting'],
       ['Disputes and chargebacks', 'Representment and merchant recovery', 'Network-facing dispute processing'],
       ['PCI DSS', 'Own compliance; P2PE terminals, no cardholder data stored', 'Validates Wallet Partners as service provider'],
@@ -216,11 +216,11 @@ const tblRow = (cells, fs = 10) => cells.map(t => ({ text: String(t), options: {
   }
   // 12. What the station gets
   {
-    const s = base(); title(s, 'What the station gets', 'A product built around gallons, forecourts and night shifts');
+    const s = base(); title(s, 'What the station gets', 'A product built around forecourts, night shifts and a simple price');
     s.addImage({ path: path.join(ROOT, 'site/assets/img/pos-tap.jpg'), x: M, y: 1.9, w: 4.4, h: 2.475, rounding: false });
     s.addText('Illustrative image', { x: M, y: 4.4, w: 4.4, h: 0.3, fontFace: FONT, fontSize: 9, color: C.ink3, isTextBox: true, margin: 0 });
-    const feats = [['FaGasPump', 'Per-gallon pricing', 'Fee in pesos per gallon with a cap; interchange-plus statements the owner can check against the weekly MICM notice.'],
-      ['FaClock', 'Next-day pesos', 'Settlement next business day, per station, with shift-level reconciliation; less cash on 24-hour sites.'],
+    const feats = [['FaGasPump', '25 bps below today', 'Rate 0.25 points below the station\'s current contract, no monthly minimum; interchange-plus statements the owner can compare line by line.'],
+      ['FaClock', 'Cleared in dollars', 'Transactions cleared in US dollars, per station, with shift-level reconciliation; terminals on monthly rental with replacement included.'],
       ['FaWifi', 'Forecourt-ready terminals', 'Rugged wireless EMV/contactless, pre-auth and completion, Spanish prompts, pump-controller integration where supported.'],
       ['FaChartLine', 'Owner dashboard', 'Sales by pump, shift and product; card mix; chargebacks; statements formatted for the accountant and DGII.'],
       ['FaShieldAlt', 'Fraud and dispute desk', 'Velocity limits per pump and card, EMV liability-shift compliance, disputes worked on the station\'s behalf.'],
@@ -243,9 +243,9 @@ const tblRow = (cells, fs = 10) => cells.map(t => ({ text: String(t), options: {
     const fx = 62;
     s.addTable([tblHead(['Scenario', 'Annual volume', 'Gross MDR @1.95%', 'US$ equiv.'])].concat(sc.map((k, i) => tblRow([k + ' stations', 'RD$' + Math.round(vol[i]).toLocaleString('en-US') + ' MM', 'RD$' + rev[i].toFixed(1) + ' MM', 'US$' + Math.round(rev[i] * 1e6 / fx / 1000).toLocaleString('en-US') + ' k'], 10.5))),
       { x: 7.6, y: 1.9, w: 5.13, colW: [1.3, 1.45, 1.45, 0.93], fontFace: FONT, border: { type: 'solid', color: C.line, pt: 0.5 }, rowH: 0.4, autoPage: false });
-    s.addText([{ text: 'Assumptions. ', options: { bold: true } }, { text: 'Card volume per station RD$3.3 MM per month, the national average implied by RD$41 bn a year across about 1,025 stations; Polígono Central sites are expected to run above it. Effective MDR 1.95% (the low end of today\'s range). Exchange rate RD$62 per US$. Interchange, network fees, terminal costs and the bank\'s share are not deducted; the revenue split is a negotiation item.' }],
+    s.addText([{ text: 'Assumptions. ', options: { bold: true } }, { text: 'Card volume per station RD$3.3 MM per month, the national average implied by RD$41 bn a year across about 1,025 stations; Polígono Central sites are expected to run above it. Effective MDR 1.95%, i.e. 25 bps below a station currently paying 2.20%. Exchange rate RD$62 per US$. Interchange, network fees, terminal costs and the bank\'s share are not deducted; the revenue split is a negotiation item.' }],
       { x: 7.6, y: 3.75, w: 5.13, h: 2.75, fontFace: FONT, fontSize: 10.5, color: C.ink2, isTextBox: true, margin: 0, valign: 'top' });
-    s.addNotes('Walk through the 20-station case only; the 10 and 40 cases show sensitivity. Emphasise that pricing per gallon can land below today\'s effective rate for the station while still clearing interchange.');
+    s.addNotes('Walk through the 20-station case only; the 10 and 40 cases show sensitivity. Merchant pricing is 25 bps below each station\'s current contract, so the gross MDR shown at 1.95% is a ceiling for stations currently at 2.20%.');
   }
   // 14. Compliance
   {

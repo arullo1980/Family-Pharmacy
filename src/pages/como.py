@@ -9,7 +9,7 @@ def body(ctx):
   <ol class="timeline">
     <li><strong>El cliente paga en el patio.</strong> El bombero digita el monto o el controlador de surtidores lo envía a la terminal inalámbrica. Se aceptan chip, sin contacto y billeteras móviles; la banda magnética está desactivada por política.</li>
     <li><strong>Autorización.</strong> La terminal envía la transacción, cifrada de punto a punto, a la plataforma del banco patrocinador, que la enruta a Visa, Mastercard o la red de débito local.</li>
-    <li><strong>Liquidación.</strong> El banco recibe los fondos de las redes y nosotros le pagamos a su cuenta en pesos el siguiente día hábil, descontando la tarifa por galón acordada.</li>
+    <li><strong>Liquidación.</strong> El banco recibe los fondos de las redes y las transacciones se liquidan en dólares estadounidenses a la cuenta que usted indique, descontando la comisión acordada (0.25% por debajo de su contrato actual).</li>
     <li><strong>Conciliación.</strong> Recibe un estado de cuenta por turno y por bomba, con el intercambio, la tarifa de la red y nuestra tarifa por separado.</li>
     <li><strong>Disputas.</strong> Si un cliente reclama, nuestra mesa de disputas arma el caso con el recibo y la evidencia de la terminal y lo defiende ante la red.</li>
   </ol>

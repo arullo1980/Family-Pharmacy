@@ -5,6 +5,9 @@
   if (!root || typeof L === 'undefined' || !window.WP_STATIONS) return;
 
   var data = window.WP_STATIONS;
+  var EN = document.documentElement.lang === 'en';
+  var T = EN ? { inside: 'Inside polygon', edge: 'Adjacent', h24: 'Open 24 h', km: 'km from centre', maps: 'Google Maps', sv: 'Street View', show: 'Show on map', nophone: 'No published phone', of: ' of ', stations: ' stations', poly: 'Polígono Central (approximate boundary)', centre: 'Reference centre used for distances', isyours: 'Is this your station? Sign it up', signup: '/en/sign-up/?station=' }
+             : { inside: 'Dentro del polígono', edge: 'Adyacente', h24: 'Abierta 24 h', km: 'km del centro', maps: 'Google Maps', sv: 'Street View', show: 'Ver en el mapa', nophone: 'Sin teléfono publicado', of: ' de ', stations: ' estaciones', poly: 'Polígono Central (límite aproximado)', centre: 'Centro de referencia para las distancias', isyours: '¿Es su estación? Regístrela', signup: '/afiliese/?estacion=' };
   var stations = data.stations;
   var compact = root.classList.contains('compact');
 
@@ -88,7 +91,7 @@
     if (tbody) {
       tbody.innerHTML = shown.map(function (s) {
         return '<tr><td class="num">' + s.id + '</td><td>' + s.name + '</td><td>' + s.brand + '</td><td>' + s.address + '</td>' +
-          '<td>' + (s.phone || '—') + '</td><td>' + s.hours + '</td><td>' + s.zone + '</td>' +
+          '<td>' + (s.phone || '—') + '</td><td>' + s.hours + '</td><td>' + (s.inside ? T.inside : T.edge) + '</td>' +
           '<td class="num">' + s.distKm.toFixed(2) + '</td><td class="num">' + s.lat.toFixed(6) + ', ' + s.lng.toFixed(6) + '</td></tr>';
       }).join('');
     }

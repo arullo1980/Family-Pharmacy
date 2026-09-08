@@ -7,7 +7,7 @@ def body(ctx):
   <div>
     <h2>Por qué existimos</h2>
     <p>Las estaciones de gasolina están entre los comercios de mayor volumen de cualquier economía y, sin embargo, se les atiende con las mismas terminales, los mismos precios y el mismo soporte que a un colmado. En 2026 esa contradicción se volvió noticia nacional cuando el gremio de detallistas amenazó con dejar de aceptar tarjetas.</p>
-    <p>Wallet Partners nació para construir el programa especializado que el sector lleva años pidiendo: tarifa por galón, equipo para el patio, liquidación al día siguiente y soporte local, operado como facilitador de pagos bajo un banco patrocinador autorizado.</p>
+    <p>Wallet Partners nació para construir el programa especializado que el sector lleva años pidiendo: una comisión 25 puntos básicos por debajo del contrato actual, sin mínimo mensual, equipo para el patio, liquidación en dólares y soporte local, operado como facilitador de pagos bajo un banco patrocinador autorizado.</p>
     <h2>Cómo trabajamos</h2>
     <ul class="checklist"><li><strong>Un solo sector, a fondo.</strong> Combustibles primero; nada más hasta hacerlo bien.</li><li><strong>Controles de nivel bancario desde el primer día.</strong> Nuestro modelo asume que los auditores del banco están en la sala.</li><li><strong>Transparencia con el comercio.</strong> Estados de cuenta que el dueño puede verificar contra el aviso semanal del MICM.</li><li><strong>Presencia local.</strong> Instalación, capacitación y soporte en Santo Domingo, en español.</li></ul>
   </div>

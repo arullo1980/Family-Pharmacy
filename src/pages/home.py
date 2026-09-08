@@ -7,15 +7,15 @@ def body(ctx):
   <picture><source srcset="/assets/img/hero-station.webp" type="image/webp" /><img class="hero-img" src="/assets/img/hero-station.jpg" alt="" fetchpriority="high" /></picture>
   <div class="wrap">
     <span class="eyebrow">Para estaciones de combustible · República Dominicana</span>
-    <h1>Acepte tarjetas y pague por galón, no por porcentaje.</h1>
-    <p class="lead">Wallet Partners es un programa de aceptación de tarjetas hecho solo para estaciones de gasolina: tarifa fija por galón con tope, liquidación al día siguiente en pesos, terminales para el patio de bombas y soporte en Santo Domingo. Operamos bajo el patrocinio de un banco autorizado.</p>
+    <h1>Acepte tarjetas y pague 0.25% menos que con su contrato actual.</h1>
+    <p class="lead">Wallet Partners es un programa de aceptación de tarjetas hecho solo para estaciones de gasolina: una tarifa 25 puntos básicos por debajo de su contrato de procesamiento actual, sin mínimo mensual, transacciones liquidadas en dólares, terminales para el patio de bombas y soporte en Santo Domingo. Operamos bajo el patrocinio de un banco autorizado.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="/afiliese/">Afilie su estación</a>
-      <a class="btn btn-ghost" href="/precios/">Calcule lo que paga hoy</a>
+      <a class="btn btn-ghost" href="/precios/">Calcule su ahorro</a>
     </div>
     {stat_tiles([
-      ("Por galón", "tarifa fija con tope", "no sube cuando sube el precio del combustible"),
-      ("Día siguiente", "liquidación en pesos", "por estación y por turno"),
+      ("−0.25%", "frente a su contrato actual", "25 puntos básicos menos en cada transacción"),
+      ("USD", "transacciones liquidadas en dólares", "estado de cuenta por estación y por turno"),
       ("24 h", "operación continua", "terminales inalámbricas EMV y sin contacto"),
       ("Local", "instalación y soporte", "en el Distrito Nacional"),
     ])}
@@ -27,11 +27,11 @@ def body(ctx):
     <div class="section-head">
       <span class="eyebrow">El problema</span>
       <h2>Una comisión de 1.95% a 2.50% se lleva entre la cuarta parte y la tercera parte de su margen.</h2>
-      <p>El precio de venta y el margen del detallista los fija el Estado cada semana. Con un margen bruto de unos RD$25 por galón, una comisión porcentual equivale a RD$6.59–8.45 por galón: entre 25% y 36% de lo que le queda a la estación, según las cifras que ANADEGAS hizo públicas en julio de 2026. Cada vez que sube el precio del combustible, sube la comisión, pero no su margen.</p>
+      <p>El precio de venta y el margen del detallista los fija el Estado cada semana. Con un margen bruto de unos RD$25 por galón, una comisión porcentual equivale a RD$6.59–8.45 por galón: entre 25% y 36% de lo que le queda a la estación, según las cifras que ANADEGAS hizo públicas en julio de 2026. Nuestra oferta es simple: 25 puntos básicos menos que la comisión que paga hoy, sin mínimo mensual.</p>
     </div>
     <div class="grid grid-3">
-      <div class="card">{icon("pump")}<h3>Tarifa por galón</h3><p>Usted paga pesos por galón vendido con tarjeta, con un tope acordado. La cuenta cuadra con el aviso semanal de precios del MICM, no con un porcentaje que cambia.</p></div>
-      <div class="card">{icon("clock")}<h3>Su dinero al día siguiente</h3><p>Liquidación en pesos dominicanos el siguiente día hábil, con estado de cuenta por turno y por bomba para que su contador y su cajero cuadren sin sorpresas.</p></div>
+      <div class="card">{icon("pump")}<h3>25 puntos básicos menos</h3><p>Traiga su contrato de procesamiento actual y le cotizamos 0.25% por debajo de esa tarifa. Sin cuota mínima mensual: si un mes vende menos, paga menos.</p></div>
+      <div class="card">{icon("clock")}<h3>Liquidación en dólares</h3><p>Las transacciones se liquidan en dólares estadounidenses, con estado de cuenta por turno y por bomba para que su contador y su cajero cuadren sin sorpresas.</p></div>
       <div class="card">{icon("shield")}<h3>Menos efectivo, menos riesgo</h3><p>Más ventas con tarjeta significan menos efectivo en caja durante el turno de la noche, menos faltantes y menos exposición para su personal.</p></div>
     </div>
   </div>
@@ -46,7 +46,7 @@ def body(ctx):
       <ol class="timeline">
         <li><strong>Regístrese en línea.</strong> Cinco minutos. Le pedimos los datos de la estación, su resolución del MICM y su RNC.</li>
         <li><strong>Aprobación e instalación.</strong> El banco patrocinador aprueba el expediente; nuestro equipo instala las terminales y capacita a su personal en el patio.</li>
-        <li><strong>Cobre y reciba.</strong> Chip, sin contacto y billeteras móviles. El dinero llega a su cuenta al día siguiente hábil.</li>
+        <li><strong>Cobre y reciba.</strong> Chip, sin contacto y billeteras móviles. Las transacciones se liquidan en dólares a la cuenta que usted indique.</li>
       </ol>
       <a class="btn btn-navy" href="/como-funciona/">Ver todos los detalles</a>
     </div>
@@ -74,7 +74,7 @@ def body(ctx):
     <div class="grid grid-3">
       <div class="card">{icon("card")}<h3>Terminales para el patio</h3><p>Inalámbricas, resistentes, con chip y sin contacto, impresión de recibo y menús en español. Integración con el controlador de surtidores cuando su equipo lo permite.</p></div>
       <div class="card">{icon("chart")}<h3>Panel del propietario</h3><p>Ventas por bomba, turno y producto; mezcla de tarjetas; contracargos; estados de cuenta descargables para su contador y para la DGII.</p></div>
-      <div class="card">{icon("doc")}<h3>Estados de cuenta claros</h3><p>Verá el intercambio, la tarifa de la red y nuestra tarifa por separado. Sin cargos escondidos ni permanencia mínima abusiva.</p></div>
+      <div class="card">{icon("doc")}<h3>Estados de cuenta claros</h3><p>Verá el intercambio, la tarifa de la red y nuestra tarifa por separado. Alquiler mensual de la terminal y ningún otro cargo fijo.</p></div>
       <div class="card">{icon("shield")}<h3>Protección contra fraude</h3><p>Límites por bomba y por tarjeta, cumplimiento EMV y una mesa de disputas que trabaja los contracargos en nombre de la estación.</p></div>
       <div class="card">{icon("map")}<h3>Soporte en la calle</h3><p>Técnicos en Santo Domingo, en español, con reposición de terminal en horas, no en semanas.</p></div>
       <div class="card">{icon("bank")}<h3>Respaldo bancario</h3><p>Los fondos se liquidan a través de un banco patrocinador autorizado y las reglas de Visa y Mastercard. Wallet Partners no retiene su dinero.</p></div>

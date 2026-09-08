@@ -1,6 +1,6 @@
 def body(ctx):
     return """
-<div class="page-title"><div class="wrap"><span class="eyebrow">Afiliación</span><h1>Registre su estación.</h1><p>Cinco minutos. No le compromete a nada: le contactamos en un día hábil, revisamos su volumen y le enviamos una propuesta por escrito con la tarifa por galón para su estación.</p></div></div>
+<div class="page-title"><div class="wrap"><span class="eyebrow">Afiliación</span><h1>Registre su estación.</h1><p>Cinco minutos. No le compromete a nada: le contactamos en un día hábil, revisamos su volumen y le enviamos una propuesta por escrito: 0.25% por debajo de su contrato actual, sin mínimo mensual, alquiler mensual de terminal y liquidación en dólares.</p></div></div>
 <section><div class="wrap grid grid-2">
   <div>
     <form class="contact" method="post" action="/api/contact" novalidate>
@@ -21,8 +21,8 @@ def body(ctx):
     </form>
   </div>
   <div>
-    <div class="card"><h3>Qué pasa después</h3><ol class="timeline"><li><strong>Día 1.</strong> Un asesor le llama, confirma su volumen y responde sus preguntas.</li><li><strong>Días 2–5.</strong> Recibe la propuesta por escrito con la tarifa por galón y el tope.</li><li><strong>Días 5–15.</strong> Reunimos los documentos y el banco patrocinador aprueba el expediente.</li><li><strong>Instalación.</strong> Programamos la instalación y la capacitación en su patio.</li></ol></div>
-    <div class="card mt-2"><h3>Tenga a mano</h3><ul class="checklist"><li>Resolución del MICM</li><li>RNC y registro mercantil</li><li>Cédulas de los socios y del representante</li><li>Certificación de cuenta bancaria</li></ul></div>
+    <div class="card"><h3>Qué pasa después</h3><ol class="timeline"><li><strong>Día 1.</strong> Un asesor le llama, confirma su volumen y responde sus preguntas.</li><li><strong>Días 2–5.</strong> Recibe la propuesta por escrito con su tarifa (contrato actual − 0.25%) y el alquiler de la terminal.</li><li><strong>Días 5–15.</strong> Reunimos los documentos y el banco patrocinador aprueba el expediente.</li><li><strong>Instalación.</strong> Programamos la instalación y la capacitación en su patio.</li></ol></div>
+    <div class="card mt-2"><h3>Tenga a mano</h3><ul class="checklist"><li>Resolución del MICM</li><li>RNC y registro mercantil</li><li>Cédulas de los socios y del representante</li><li>Certificación de cuenta bancaria</li><li>Su contrato o estado de cuenta de procesamiento actual</li></ul></div>
   </div>
 </div></section>
 <script>(function(){var e=new URLSearchParams(location.search).get('estacion');var i=document.querySelector('input[name=org]');if(e&&i){i.value=e;}})();</script>

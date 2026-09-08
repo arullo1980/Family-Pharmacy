@@ -5,7 +5,7 @@
 - [ ] **Leadership bios**: add a team slide to the deck and/or a section on `/nosotros/`.
 - [ ] **Station opening hours and phones** were taken from public listings on 2026-09-08 — re-verify during onboarding.
 - [ ] **Polygon boundary** on the map is an approximation drawn from the four avenues; adjust the coordinates in `build.py` (`POLYGON`) if you want it tighter.
-- [ ] **Pricing page** (`/precios/`) promises: no terminal charge in the first wave, no monthly minimum, one-year contract cancellable with 30 days' notice. Confirm these are the terms you will offer, or edit `src/pages/precios.py` and `src/pages/preguntas.py`.
+- [x] **Pricing terms** on `/precios/`, `/en/pricing/`, home, FAQ and deck: 25 bps below the station's current contract, no monthly minimum, terminal on monthly rental, transactions cleared in US dollars (your instruction of 2026-09-08). Still yours to confirm: the FAQ's one-year contract cancellable with 30 days' notice, and the "approval under ten business days" claim.
 - [ ] **Scenario slide** (deck slide 13): RD$3.3 M card volume per station per month (national average implied by RD$41 bn / ≈1,025 stations), 1.95% MDR, RD$62/US$. Replace with your own model.
 - [ ] **Tax treatment** paragraph on `/legal/cumplimiento/` and deck slide 14 (Norma 08-04 withholding vs. fuel's ITBIS exemption) is flagged "to be confirmed with tax counsel" — confirm before a bank compliance team reads it.
 - [ ] **Images** are AI-generated illustrations (disclosed on `/legal/aviso-legal/`). Replace with real site photos of the twenty stations when you have them (`site/assets/img/`, 16:9, ≤ 200 KB WebP).
