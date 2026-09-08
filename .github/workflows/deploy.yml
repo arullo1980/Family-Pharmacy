@@ -28,6 +28,25 @@ jobs:
           test -f site/stations/index.html
           test -f site/sitemap.xml
           grep -q "WP_STATIONS" site/stations/index.html
+      - name: Ensure the Pages project exists
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PROJECT: wallet-partners-dr
+        run: |
+          set -euo pipefail
+          api="https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/pages/projects"
+          code=$(curl -sS -o /tmp/proj.json -w '%{http_code}' -H "Authorization: Bearer ${CF_API_TOKEN}" "${api}/${PROJECT}")
+          if [ "$code" = "404" ]; then
+            echo "Creating Pages project ${PROJECT}"
+            curl -sS -f -X POST -H "Authorization: Bearer ${CF_API_TOKEN}" -H "Content-Type: application/json" \
+              -d "{\"name\":\"${PROJECT}\",\"production_branch\":\"main\"}" "${api}" > /dev/null
+          elif [ "$code" != "200" ]; then
+            echo "Cloudflare API returned ${code}"; cat /tmp/proj.json; exit 1
+          else
+            echo "Pages project ${PROJECT} already exists"
+          fi
       - name: Deploy to Cloudflare Pages
         if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
         uses: cloudflare/wrangler-action@v3
