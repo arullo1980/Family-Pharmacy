@@ -61,6 +61,11 @@
     });
   });
 
+  // Contact page: preselect the role from ?tipo= (links from the bank pages)
+  var tipo = new URLSearchParams(location.search).get('tipo');
+  var roleSel = document.getElementById('role');
+  if (tipo && roleSel) roleSel.value = tipo;
+
   // Pre-fill the station name from ?estacion= / ?station= (links on the launch-zone map)
   var qs = new URLSearchParams(location.search);
   var pre = qs.get('estacion') || qs.get('station');

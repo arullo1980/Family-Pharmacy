@@ -23,5 +23,4 @@ def body(ctx):
     <div class="card mt-2"><h3>Bancos y aliados</h3><p>Seleccione "Banco o entidad financiera" y le enviamos la presentación completa tras un acuerdo de confidencialidad. <a href="/en/" lang="en">Information in English</a>.</p></div>
   </div>
 </div></section>
-<script>(function(){{var t=new URLSearchParams(location.search).get('tipo');var s=document.getElementById('role');if(t&&s){{s.value=t;}}}})();</script>
 """
