@@ -1,4 +1,4 @@
-/* Wallet Partners LLC — station map (Leaflet + CARTO basemap, no API key) */
+/* Bombero Partners — station map (Leaflet + OpenStreetMap tiles, no API key) */
 (function () {
   'use strict';
   var root = document.getElementById('map');
