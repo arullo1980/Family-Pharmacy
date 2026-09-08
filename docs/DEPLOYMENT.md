@@ -75,7 +75,7 @@ preload flag at the edge), **TLS 1.2 minimum**, **Automatic HTTPS Rewrites**, **
 ## 6. Security and quality checks after the first deploy
 
 - https://securityheaders.com — expect A/A+ (headers come from `site/_headers`).
-- https://observatory.mozilla.org — CSP is strict: scripts only from `self`, map tiles only from CARTO/OSM.
+- https://observatory.mozilla.org — CSP is strict: scripts only from `self`, map tiles only from OpenStreetMap.
 - https://hstspreload.org — submit once HSTS is confirmed on apex and www.
 - https://pagespeed.web.dev — images are pre-sized WebP/JPEG; no third-party fonts; Leaflet self-hosted.
 - Search Console: add the property and submit `https://<domain>/sitemap.xml`.
