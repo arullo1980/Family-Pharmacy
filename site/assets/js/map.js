@@ -12,10 +12,20 @@
   var compact = root.classList.contains('compact');
 
   var map = L.map(root, { scrollWheelZoom: !compact, zoomControl: true });
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  // Basemap: Esri World Street Map (no key). If its tiles fail, fall back to OpenStreetMap.
+  var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 19,
+    attribution: 'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, OpenStreetMap contributors'
+  });
+  var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
+  });
+  var tileErrors = 0;
+  esri.on('tileerror', function () {
+    if (++tileErrors === 3 && map.hasLayer(esri)) { map.removeLayer(esri); osm.addTo(map); }
+  });
+  esri.addTo(map);
 
   // Approximate boundary of the Polígono Central (JFK / 27 de Febrero / Churchill / Máximo Gómez)
   var poly = L.polygon(data.polygon, {

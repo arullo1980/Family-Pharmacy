@@ -112,6 +112,14 @@ CHROME = {
 }
 LOGO = """<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="8" width="36" height="26" rx="6" fill="#0f2440"/><rect x="2" y="14" width="36" height="6" fill="#eda100"/><circle cx="29" cy="26" r="4" fill="#2a78d6"/><circle cx="24" cy="26" r="4" fill="#eda100" opacity=".9"/></svg>"""
 
+import hashlib
+def asset(path):
+    """/assets/... -> /assets/...?v=<8-char content hash> so browsers drop stale copies despite the 1-year cache."""
+    f = SITE / path.lstrip("/")
+    if f.exists():
+        return f"{path}?v={hashlib.sha1(f.read_bytes()).hexdigest()[:8]}"
+    return path
+
 def layout(page, body, stations_json=None):
     path = page["path"]
     url = SITE_URL + path
@@ -127,10 +135,10 @@ def layout(page, body, stations_json=None):
     head_extra = page.get("head", "")
     scripts = ""
     if page.get("map"):
-        head_extra += '\n  <link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css" />'
-        scripts += '\n<script src="/data/stations.js"></script>'
-        scripts += '\n<script src="/assets/vendor/leaflet/leaflet.js"></script>'
-        scripts += '\n<script src="/assets/js/map.js" defer></script>'
+        head_extra += f'\n  <link rel="stylesheet" href="{asset("/assets/vendor/leaflet/leaflet.css")}" />'
+        scripts += f'\n<script src="{asset("/data/stations.js")}"></script>'
+        scripts += f'\n<script src="{asset("/assets/vendor/leaflet/leaflet.js")}"></script>'
+        scripts += f'\n<script src="{asset("/assets/js/map.js")}" defer></script>'
     og_image = SITE_URL + page.get("image", "/assets/img/hero-station.jpg")
     title = html.escape(page["title"])
     desc = html.escape(page["description"])
@@ -175,7 +183,7 @@ def layout(page, body, stations_json=None):
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <link rel="stylesheet" href="/assets/css/main.css" />{head_extra}
+  <link rel="stylesheet" href="{asset('/assets/css/main.css')}" />{head_extra}
   <script type="application/ld+json">{org}</script>
   <script type="application/ld+json">{breadcrumbs}</script>
 </head>
@@ -212,7 +220,7 @@ def layout(page, body, stations_json=None):
   {ch["cookie"]}
   <div class="actions"><button class="btn btn-navy" id="cookie-ok">{ch["ok"]}</button></div>
 </div>
-<script src="/assets/js/main.js" defer></script>{scripts}
+<script src="{asset('/assets/js/main.js')}" defer></script>{scripts}
 </body>
 </html>
 """
