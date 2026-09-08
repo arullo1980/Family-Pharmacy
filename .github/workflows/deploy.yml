@@ -27,7 +27,7 @@ jobs:
           test -f site/index.html
           test -f site/zona/index.html && test -f site/en/index.html
           test -f site/sitemap.xml
-          grep -q "WP_STATIONS" site/zona/index.html
+          grep -q "/data/stations.js" site/zona/index.html && grep -q "WP_STATIONS" site/data/stations.js
       - name: Check whether Cloudflare secrets are configured
         id: cf
         env:
