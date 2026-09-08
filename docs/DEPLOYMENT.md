@@ -1,17 +1,10 @@
 # Deployment: Cloudflare Pages, domain, DNS and email
 
-## 1. Choose the domain
+## 1. Domain
 
-The site is built with `SITE_URL=https://walletpartners.do` by default. Candidates, in order of preference:
-
-| Domain | Why |
-|---|---|
-| `walletpartners.do` | Dominican ccTLD, short, signals local commitment to the bank. Register through a NIC.DO accredited registrar (e.g. `nic.do`); Cloudflare Registrar does not sell `.do`. |
-| `walletpartners.com.do` | Fallback if the `.do` is taken. |
-| `dr.walletpartnersllc.com` or `gasolineras.walletpartnersllc.com` | Zero-cost option on the domain you already use for email; works immediately once the zone is in Cloudflare. |
-
-Change the domain in one place: build with `SITE_URL=https://<domain>` (the GitHub workflow reads the
-repository variable `SITE_URL`), and update `Canonical:`/`Policy:` in `site/.well-known/security.txt`.
+Registered: **`bomberopartners.com.do`** at NIC.DO (registrar stays NIC.DO; DNS and hosting run on Cloudflare).
+The site is built with `SITE_URL=https://bomberopartners.com.do` by default; the GitHub workflow reads the
+repository variable `SITE_URL` if you ever change it. `security.txt` carries the same domain.
 
 ## 2. Create the Pages project
 
@@ -20,7 +13,7 @@ repository variable `SITE_URL`), and update `Canonical:`/`Policy:` in `site/.wel
 1. Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git → select this repository.
 2. Production branch: `main` (or the branch you are working on).
 3. Build settings: framework preset *None*; build command `pip install openpyxl && python3 build.py`; build output directory `site`.
-4. Environment variables (build): `SITE_URL=https://walletpartners.do`, `PYTHON_VERSION=3.12`.
+4. Environment variables (build): `SITE_URL=https://bomberopartners.com.do`, `PYTHON_VERSION=3.12`.
 5. Save and deploy. Every push then builds and publishes; other branches get preview URLs.
 
 **Option B — GitHub Actions (already in `.github/workflows/deploy.yml`)**
@@ -31,6 +24,14 @@ repository variable `SITE_URL`), and update `Canonical:`/`Policy:` in `site/.wel
 4. Create the Pages project once: `npx wrangler pages project create wallet-partners-dr --production-branch main`.
 5. Push. The workflow builds, runs sanity checks and deploys with `wrangler pages deploy`.
 
+**Connecting the domain (one-time, in this order)**
+
+1. Cloudflare dashboard → *Add a domain* → type `bomberopartners.com.do` → Free plan → Continue. Cloudflare scans for existing records (there are none yet) and shows **two nameservers** (e.g. `ana.ns.cloudflare.com` and `bob.ns.cloudflare.com`; yours will differ).
+2. NIC.DO → *Mis dominios* → `bomberopartners.com.do` → *Servidores DNS / Nameservers* → replace the NIC.DO defaults with the two Cloudflare nameservers → save.
+3. Wait until Cloudflare emails "bomberopartners.com.do is now active" (usually under an hour for `.do`, up to 24 h worst case).
+4. Workers & Pages → `wallet-partners-dr` → *Custom domains* → *Set up a custom domain* → `bomberopartners.com.do` → Activate. Repeat for `www.bomberopartners.com.do`. Cloudflare creates the CNAME records and issues the certificate itself.
+5. Add the CAA, SPF, DMARC and null-MX records from §5, then enable DNSSEC (DNS → Settings) and paste the DS record into NIC.DO's DNSSEC section.
+
 **Option C — one-off from a laptop**: `npm run build && npm run deploy` (uses `wrangler.toml`).
 
 ## 3. Contact form secrets (Pages → Settings → Variables and Secrets, *Production*)
@@ -39,16 +40,16 @@ repository variable `SITE_URL`), and update `Canonical:`/`Policy:` in `site/.wel
 |---|---|
 | `RESEND_API_KEY` | API key from resend.com (free tier is enough); verify the sending domain there first |
 | `CONTACT_TO` | `info@walletpartnersllc.com` |
-| `CONTACT_FROM` | `Wallet Partners Website <noreply@walletpartners.do>` |
+| `CONTACT_FROM` | `Wallet Partners Website <noreply@bomberopartners.com.do>` |
 
 Until these exist the function returns 503 and the page offers a `mailto:` fallback.
 
 ## 4. Custom domain
 
-Pages → Custom domains → Set up a custom domain → `walletpartners.do` and `www.walletpartners.do`.
+Pages → Custom domains → Set up a custom domain → `bomberopartners.com.do`, then again for `www.bomberopartners.com.do`.
 If the zone is on Cloudflare, the CNAME records are created automatically; otherwise add the records below.
 
-## 5. DNS records (zone: walletpartners.do)
+## 5. DNS records (zone: bomberopartners.com.do)
 
 | Type | Name | Content | Proxy | Purpose |
 |---|---|---|---|---|
@@ -64,7 +65,7 @@ If the zone is on Cloudflare, the CNAME records are created automatically; other
 | MX | `@` | `.` (null MX, priority 0) | — | Declares that the domain receives no mail (RFC 7505) |
 | TXT | `_mta-sts` | (only if you add mail later) | — | — |
 
-If you want to *send* from `noreply@walletpartners.do` (Resend), replace the SPF/DKIM rows with the
+If you want to *send* from `noreply@bomberopartners.com.do` (Resend), replace the SPF/DKIM rows with the
 values Resend gives you and keep DMARC at `p=reject` once the DKIM check passes.
 
 Also enable in the Cloudflare zone: **DNSSEC** (DNS → Settings → Enable DNSSEC, then paste the DS record at the

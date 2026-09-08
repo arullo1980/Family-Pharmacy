@@ -51,7 +51,7 @@ python3 -m http.server 8080 --directory site
 ```
 
 Set `SITE_URL=https://your-domain` when building to change canonical URLs, sitemap and
-Open Graph links (default `https://walletpartners.do`).
+Open Graph links (default `https://bomberopartners.com.do`, the registered domain).
 
 ## Rebuilding the deck
 
