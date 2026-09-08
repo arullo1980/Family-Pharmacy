@@ -29,7 +29,7 @@ def body(ctx):
       <div class="row"><span>Comisión que paga al mes</span><b id="p-o-com"></b></div>
       <div class="row"><span>Comisión por galón vendido con tarjeta</span><b id="p-o-porgal"></b></div>
       <div class="row"><span>Parte de su margen que se va en comisión</span><b id="p-o-margen"></b></div>
-      <div class="row"><span>Con Wallet Partners (−0.25%) al mes</span><b id="p-o-nueva"></b></div>
+      <div class="row"><span>Con Bombero Partners (−0.25%) al mes</span><b id="p-o-nueva"></b></div>
       <div class="row"><span>Ahorro al año</span><b id="p-o-ahorro"></b></div>
     </div>
   </div>

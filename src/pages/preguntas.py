@@ -9,7 +9,7 @@ FAQ = [
     ("¿Qué documentos necesito?", "Resolución del MICM, RNC y registro mercantil, documentos constitutivos, cédulas de los socios con 10% o más y del representante legal, y certificación de la cuenta bancaria."),
     ("¿Cuánto tarda la aprobación?", "Normalmente menos de diez días hábiles desde que el expediente está completo. La instalación se programa la misma semana de la aprobación."),
     ("¿Quién es el banco patrocinador?", "Una entidad financiera autorizada, miembro de Visa y Mastercard, que aprueba cada comercio, recibe los fondos de las redes y supervisa el programa. Su nombre aparece en el contrato de afiliación."),
-    ("¿Wallet Partners retiene mi dinero?", "No. Los fondos se liquidan a través de una cuenta del programa controlada por el banco patrocinador y se transfieren en dólares a la cuenta que usted indique."),
+    ("¿Bombero Partners retiene mi dinero?", "No. Los fondos se liquidan a través de una cuenta del programa controlada por el banco patrocinador y se transfieren en dólares a la cuenta que usted indique."),
     ("¿Funciona con mi controlador de surtidores?", "Con los sistemas más comunes, sí. Si no, la terminal funciona de forma independiente: el bombero digita el monto."),
     ("¿Puedo aceptar tarjetas de flota?", "Está previsto para una segunda fase junto con un programa de fidelidad para estaciones. Le avisamos cuando esté disponible."),
     ("¿Y si mi estación no está en el Polígono Central?", "Regístrela igual. Abrimos zonas por demanda y le avisamos cuando llegue su sector."),

@@ -68,8 +68,8 @@
   if (pre && orgField && !orgField.value) orgField.value = pre;
 
   // Contact / sign-up forms: post to the Pages Function at /api/contact; fall back to mailto.
-  var MSG = EN ? { sending: 'Sending…', ok: 'Thank you. We will reply within one business day.', fallback: 'The form endpoint is not enabled yet. ', link: 'Send this message by email instead', subject: 'Wallet Partners inquiry', subjStation: 'Station sign-up' }
-             : { sending: 'Enviando…', ok: 'Gracias. Le respondemos en un día hábil.', fallback: 'El formulario aún no está activo. ', link: 'Envíe el mensaje por correo electrónico', subject: 'Consulta Wallet Partners', subjStation: 'Afiliación de estación' };
+  var MSG = EN ? { sending: 'Sending…', ok: 'Thank you. We will reply within one business day.', fallback: 'The form endpoint is not enabled yet. ', link: 'Send this message by email instead', subject: 'Bombero Partners inquiry', subjStation: 'Station sign-up' }
+             : { sending: 'Enviando…', ok: 'Gracias. Le respondemos en un día hábil.', fallback: 'El formulario aún no está activo. ', link: 'Envíe el mensaje por correo electrónico', subject: 'Consulta Bombero Partners', subjStation: 'Afiliación de estación' };
   var form = document.querySelector('form.contact');
   if (form) {
     form.addEventListener('submit', function (ev) {

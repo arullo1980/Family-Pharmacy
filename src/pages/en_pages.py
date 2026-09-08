@@ -10,7 +10,7 @@ def home(ctx):
   <div class="wrap">
     <span class="eyebrow">For gasoline stations · Dominican Republic</span>
     <h1>Accept cards and pay 0.25% less than your current contract.</h1>
-    <p class="lead">Wallet Partners is a card-acceptance program built only for gasoline stations: a rate 25 basis points below your current processing contract, no monthly minimum, transactions cleared in US dollars, forecourt terminals and support in Santo Domingo. We operate under the sponsorship of a licensed bank.</p>
+    <p class="lead">Bombero Partners is a card-acceptance program built only for gasoline stations: a rate 25 basis points below your current processing contract, no monthly minimum, transactions cleared in US dollars, forecourt terminals and support in Santo Domingo. We operate under the sponsorship of a licensed bank.</p>
     <div class="hero-actions"><a class="btn btn-primary" href="/en/sign-up/">Sign up your station</a><a class="btn btn-ghost" href="/en/pricing/">Calculate your savings</a></div>
     {stat_tiles([("−0.25%", "versus your current contract", "25 basis points less on every transaction"), ("USD", "transactions cleared in dollars", "statement per station and per shift"), ("24 h", "continuous operation", "wireless EMV and contactless terminals"), ("Local", "installation and support", "in the Distrito Nacional")])}
   </div>
@@ -45,7 +45,7 @@ def home(ctx):
     <div class="card">{icon("doc")}<h3>Clear statements</h3><p>You see interchange, the network fee and our fee separately. A monthly terminal rental and no other fixed charge.</p></div>
     <div class="card">{icon("shield")}<h3>Fraud protection</h3><p>Limits per pump and per card, EMV compliance and a dispute desk that works chargebacks on the station's behalf.</p></div>
     <div class="card">{icon("map")}<h3>Support on the street</h3><p>Technicians in Santo Domingo, in Spanish, with terminal replacement in hours, not weeks.</p></div>
-    <div class="card">{icon("bank")}<h3>Bank backing</h3><p>Funds settle through a licensed sponsoring bank under Visa and Mastercard rules. Wallet Partners does not hold your money.</p></div>
+    <div class="card">{icon("bank")}<h3>Bank backing</h3><p>Funds settle through a licensed sponsoring bank under Visa and Mastercard rules. Bombero Partners does not hold your money.</p></div>
   </div>
 </div></section>
 <section class="dark"><div class="wrap"><div class="section-head"><span class="eyebrow">First wave</span><h2>Reserve your place in the first wave of installations.</h2><p>Registering commits you to nothing. We call you, review your volume together and send a written proposal with numbers for your station.</p></div><div class="hero-actions"><a class="btn btn-primary" href="/en/sign-up/">Sign up your station</a><a class="btn btn-ghost" href="/en/faq/">FAQ</a></div></div></section>
@@ -53,7 +53,7 @@ def home(ctx):
 
 def how(ctx):
     return f"""
-<div class="page-title"><div class="wrap"><span class="eyebrow">How it works</span><h1>From the pump to your account, no surprises.</h1><p>How Wallet Partners' card-acceptance program for gasoline stations works, from registration to settlement.</p></div></div>
+<div class="page-title"><div class="wrap"><span class="eyebrow">How it works</span><h1>From the pump to your account, no surprises.</h1><p>How Bombero Partners' card-acceptance program for gasoline stations works, from registration to settlement.</p></div></div>
 <section><div class="wrap"><div class="section-head"><h2>Every transaction, step by step</h2></div>
 <ol class="timeline">
 <li><strong>The customer pays on the forecourt.</strong> The attendant keys the amount or the pump controller sends it to the wireless terminal. Chip, contactless and mobile wallets are accepted; magnetic stripe is disabled by policy.</li>
@@ -105,7 +105,7 @@ def pricing(ctx):
     <div class="row"><span>Fees you pay per month</span><b id="p-o-com"></b></div>
     <div class="row"><span>Fee per gallon sold on card</span><b id="p-o-porgal"></b></div>
     <div class="row"><span>Share of your margin lost to fees</span><b id="p-o-margen"></b></div>
-    <div class="row"><span>With Wallet Partners (−0.25%) per month</span><b id="p-o-nueva"></b></div>
+    <div class="row"><span>With Bombero Partners (−0.25%) per month</span><b id="p-o-nueva"></b></div>
     <div class="row"><span>Saving per year</span><b id="p-o-ahorro"></b></div>
   </div>
 </div>
@@ -155,7 +155,7 @@ FAQ = [
     ("Which documents do I need?", "MICM resolution, RNC and commercial registry, constitutive documents, IDs of partners with 10% or more and of the legal representative, and a bank-account certification."),
     ("How long does approval take?", "Normally under ten business days once the file is complete. Installation is scheduled the same week as approval."),
     ("Who is the sponsoring bank?", "A licensed financial institution, member of Visa and Mastercard, that approves each merchant, receives funds from the networks and oversees the program. Its name appears in the merchant agreement."),
-    ("Does Wallet Partners hold my money?", "No. Funds settle through a program account controlled by the sponsoring bank and are transferred in dollars to the account you designate."),
+    ("Does Bombero Partners hold my money?", "No. Funds settle through a program account controlled by the sponsoring bank and are transferred in dollars to the account you designate."),
     ("Does it work with my pump controller?", "With the most common systems, yes. If not, the terminal works standalone: the attendant keys the amount."),
     ("Can I accept fleet cards?", "Planned for a second phase together with a station loyalty program. We will let you know when it is available."),
     ("What if my station is not in the Polígono Central?", "Register anyway. We open areas by demand and let you know when your sector comes up."),
@@ -207,31 +207,31 @@ def banks(ctx):
 <div class="section-head"><span class="eyebrow">Why now</span><h2>The segment publicly asked for a different pricing model.</h2><p>In June and July 2026 the national fuel-retailers association threatened to pull card terminals from more than 780 stations over percentage fees that consume a quarter to a third of a State-regulated margin. The Government opened a dialogue with the banks. A program priced 25 basis points below each station's current contract, with no monthly minimum, dollar clearing, transparent interchange and bank-grade controls gives a sponsoring bank a defensible route into a high-volume segment while the incumbents negotiate.</p></div>
 <div class="grid grid-3">
 <div class="card">{icon("bank")}<h3>What the bank does</h3><p>Network membership and BINs, approval of each merchant, program settlement account with reserves, second-line oversight and regulatory reporting.</p></div>
-<div class="card">{icon("pump")}<h3>What Wallet Partners does</h3><p>Prospecting and onboarding, KYB/KYC files prepared to the bank's standard, terminals and field support, first-line monitoring, disputes, merchant settlement and reporting to the bank.</p></div>
+<div class="card">{icon("pump")}<h3>What Bombero Partners does</h3><p>Prospecting and onboarding, KYB/KYC files prepared to the bank's standard, terminals and field support, first-line monitoring, disputes, merchant settlement and reporting to the bank.</p></div>
 <div class="card">{icon("shield")}<h3>Compliance framework</h3><p>PCI DSS with P2PE terminals, Law 155-17 (AML/CFT), Law 172-13 (data protection), Visa and Mastercard payment-facilitator rules, MCC 5541/5542. <a href="/en/legal/compliance/">Full framework</a>.</p></div>
 </div></div></section>
 <section><div class="wrap split">
 <div><span class="eyebrow">The ask</span><h2>A sponsorship agreement, then one merchant file at a time.</h2>
-<ul class="checklist"><li>Visa and Mastercard acquiring membership in the DR, or a correspondent arrangement that permits program sponsorship.</li><li>Registration of Wallet Partners as payment facilitator / program manager.</li><li>A program settlement account with agreed reserve and release terms.</li><li>Merchant approval within ten business days per file.</li><li>A named relationship contact and a compliance contact.</li></ul></div>
+<ul class="checklist"><li>Visa and Mastercard acquiring membership in the DR, or a correspondent arrangement that permits program sponsorship.</li><li>Registration of Bombero Partners as payment facilitator / program manager.</li><li>A program settlement account with agreed reserve and release terms.</li><li>Merchant approval within ten business days per file.</li><li>A named relationship contact and a compliance contact.</li></ul></div>
 <div class="card"><h3>The sponsor-bank deck covers</h3><ul class="checklist"><li>Executive summary and the 2026 fee-dispute timeline</li><li>Banco Central payment-system data and fuel-market structure</li><li>Map and list of the {st['n']} launch-zone stations</li><li>Program design, responsibility matrix and rollout plan</li><li>Volume and revenue scenario model</li><li>Compliance framework and available document set</li></ul><a class="btn btn-navy" href="/en/contact/?tipo=banco">Request the deck</a></div>
 </div></section>
 """
 
 def about(ctx):
     return f"""
-<div class="page-title"><div class="wrap"><span class="eyebrow">About</span><h1>Wallet Partners LLC</h1><p>A payments company with a single goal: that gasoline stations in the Dominican Republic accept cards on terms that fit their business.</p></div></div>
+<div class="page-title"><div class="wrap"><span class="eyebrow">About</span><h1>Bombero Partners</h1><p>The Dominican trade name of Wallet Partners LLC: a payments company with a single goal: that gasoline stations in the Dominican Republic accept cards on terms that fit their business.</p></div></div>
 <section><div class="wrap split">
 <div><h2>Why we exist</h2>
 <p>Gasoline stations are among the highest-volume merchants in any economy, yet they are served with the same terminals, the same pricing and the same support as a corner shop. In 2026 that mismatch became national news when the retailers' association threatened to stop accepting cards.</p>
-<p>Wallet Partners was formed to build the specialised program the sector has been asking for: a rate 25 basis points below the current contract, no monthly minimum, forecourt equipment, dollar clearing and local support, operated as a payment facilitator under a licensed sponsoring bank.</p>
+<p>Bombero Partners was formed to build the specialised program the sector has been asking for: a rate 25 basis points below the current contract, no monthly minimum, forecourt equipment, dollar clearing and local support, operated as a payment facilitator under a licensed sponsoring bank.</p>
 <h2>How we work</h2>
 <ul class="checklist"><li><strong>One sector, in depth.</strong> Fuel first; nothing else until it is done well.</li><li><strong>Bank-grade controls from day one.</strong> Our operating model assumes the bank's auditors are in the room.</li><li><strong>Transparency to the merchant.</strong> Statements the owner can check against the weekly MICM notice.</li><li><strong>Local presence.</strong> Installation, training and support in Santo Domingo, in Spanish.</li></ul></div>
 <figure><picture><source srcset="/assets/img/hero-station.webp" type="image/webp" /><img src="/assets/img/hero-station.jpg" alt="Modern gasoline station on an avenue at dusk" loading="lazy" width="1280" height="720" /></picture><figcaption>Illustrative image.</figcaption></figure>
 </div></section>
 <section class="alt"><div class="wrap"><div class="grid grid-3">
-<div class="card">{icon("doc")}<h3>Entity</h3><p>Wallet Partners LLC, a limited liability company organised in the United States. Dominican operations are conducted through a locally registered affiliate as required by the sponsorship structure and Dominican law.</p></div>
+<div class="card">{icon("doc")}<h3>Entity</h3><p>Bombero Partners is a trade name (DBA) of Wallet Partners LLC, a limited liability company organised in the United States. Dominican operations are conducted through a locally registered affiliate as required by the sponsorship structure and Dominican law.</p></div>
 <div class="card">{icon("map")}<h3>Market</h3><p>Dominican Republic, starting with Santo Domingo's Polígono Central and expanding to the rest of the Distrito Nacional and Santiago.</p></div>
-<div class="card">{icon("shield")}<h3>Status</h3><p>Pre-launch. We are selecting the sponsoring bank and registering first-wave stations. Wallet Partners is not a bank and does not hold merchant funds outside the bank-controlled program account.</p></div>
+<div class="card">{icon("shield")}<h3>Status</h3><p>Pre-launch. We are selecting the sponsoring bank and registering first-wave stations. Bombero Partners is not a bank and does not hold merchant funds outside the bank-controlled program account.</p></div>
 </div></div></section>
 """
 
@@ -270,7 +270,7 @@ def _page(eyebrow, title, intro, content, updated="2026-09-08"):
 def privacy(ctx):
     e = ctx["CONTACT_EMAIL"]
     return _page("Legal", "Privacy policy", "How Wallet Partners LLC handles personal data received through this website and in the course of its business.", f"""
-<h2>1. Controller</h2><p>Wallet Partners LLC ("Wallet Partners", "we") operates this website. For questions about this policy or to exercise your rights write to <a href="mailto:{e}">{e}</a>.</p>
+<h2>1. Controller</h2><p>Wallet Partners LLC, doing business as Bombero Partners ("Bombero Partners", "we"), operates this website. For questions about this policy or to exercise your rights write to <a href="mailto:{e}">{e}</a>.</p>
 <h2>2. Data we collect on this website</h2>
 <ul><li><strong>Forms.</strong> Name, company or station, address, phone, email, any volume figures you enter and the content of your message. We use them to reply, prepare a proposal and keep a record of the enquiry.</li>
 <li><strong>Server logs.</strong> Our hosting provider, Cloudflare, processes IP addresses and request metadata to deliver the site, protect it from abuse and produce aggregate statistics, under its own privacy policy.</li>
@@ -279,7 +279,7 @@ def privacy(ctx):
 <h2>3. Data we process in our business</h2><p>When a station applies to join our program we collect the information the sponsoring bank and the card networks require to evaluate a merchant: legal-entity details and RNC, operating licences, identity and contact details of owners, directors and beneficial owners, the bank account for settlement, and transaction data generated by card acceptance. We process it to perform the merchant agreement, comply with legal obligations (including Law 155-17 against money laundering) and prevent fraud.</p>
 <h2>4. Legal basis and applicable law</h2><p>We process data of Dominican residents under Law No. 172-13 on Protection of Personal Data and, where applicable, Law No. 183-02 and the regulations of the Monetary Board and the Superintendency of Banks. Data of persons in the United States is processed under applicable federal and state law. Where consent is the basis, you may withdraw it at any time.</p>
 <h2>5. Sharing</h2><p>Only with the sponsoring bank and card networks as required to provide the service; with providers acting on our instructions (hosting, email delivery, terminal management, identity verification); with professional advisers; and with authorities where the law requires. We do not sell personal data.</p>
-<h2>6. International transfers</h2><p>Wallet Partners is organised in the United States and uses cloud providers, so data may be processed outside the Dominican Republic under contractual safeguards and the security measures below.</p>
+<h2>6. International transfers</h2><p>Bombero Partners is organised in the United States and uses cloud providers, so data may be processed outside the Dominican Republic under contractual safeguards and the security measures below.</p>
 <h2>7. Retention</h2><p>Website enquiries are kept up to 24 months. Merchant and transaction records are kept for the periods required by card-network rules and Dominican and U.S. law, generally at least five years after the relationship ends, or ten where Law 155-17 requires it.</p>
 <h2>8. Security</h2><p>Encryption in transit and at rest, role-based access, activity logging and vendor due diligence. This website never stores card data; program terminals use point-to-point encryption and we operate under PCI DSS.</p>
 <h2>9. Your rights</h2><p>You may request access, correction, deletion or portability of your data, and object to or restrict processing, by writing to <a href="mailto:{e}">{e}</a>. We respond within the statutory period. You may also complain to the competent authority.</p>
@@ -316,10 +316,10 @@ def cookies(ctx):
 
 def compliance(ctx):
     return _page("Compliance", "Compliance & regulatory framework", "How Wallet Partners LLC operates within card-network rules, Dominican financial regulation and the oversight of a sponsoring bank. This page summarises the programme; full policies are shared with banks and regulators under NDA.", f"""
-<div class="callout info"><p><strong>Status.</strong> Wallet Partners is pre-launch. The controls below are being built to the standard a sponsoring bank will require and are validated before the first live transaction.</p></div>
+<div class="callout info"><p><strong>Status.</strong> Bombero Partners is pre-launch. The controls below are being built to the standard a sponsoring bank will require and are validated before the first live transaction.</p></div>
 <h2>1. Regulatory map</h2>
 <h3>Dominican Republic</h3>
-<ul><li><strong>Law No. 183-02, Monetary and Financial Law</strong>, and the Monetary Board's <strong>Payment Systems Regulation (SIPARD)</strong>, amended August 2025. The Banco Central oversees the payment system; acquiring is performed by or under financial intermediaries supervised by the <strong>Superintendencia de Bancos</strong>. Wallet Partners will operate as program manager / payment facilitator under a licensed member bank and will register any locally required entity.</li>
+<ul><li><strong>Law No. 183-02, Monetary and Financial Law</strong>, and the Monetary Board's <strong>Payment Systems Regulation (SIPARD)</strong>, amended August 2025. The Banco Central oversees the payment system; acquiring is performed by or under financial intermediaries supervised by the <strong>Superintendencia de Bancos</strong>. Bombero Partners will operate as program manager / payment facilitator under a licensed member bank and will register any locally required entity.</li>
 <li><strong>Law No. 155-17 against money laundering and terrorist financing</strong>, its regulations and UAF guidance: merchant due diligence, beneficial-ownership identification, transaction monitoring, record-keeping and suspicious-transaction reporting through the sponsoring bank.</li>
 <li><strong>Law No. 172-13 on personal data protection</strong>: lawful processing, security measures and data-subject rights.</li>
 <li><strong>Law No. 358-05 on consumer protection</strong> (Pro Consumidor): transparent pricing, receipts and complaint handling at the point of sale.</li>
@@ -328,13 +328,13 @@ def compliance(ctx):
 <h3>United States and international</h3>
 <ul><li><strong>BSA/AML programme</strong> aligned with the sponsor's requirements and, where applicable, FinCEN registration; <strong>OFAC</strong> and other sanctions screening of all merchants and beneficial owners.</li>
 <li><strong>Card-network rules</strong> (Visa Core Rules and Mastercard Rules) for payment facilitators and sponsored merchants, including MCC 5541 (service stations) and 5542 (automated fuel dispensers), AFD authorisation and completion rules, and MATCH checks.</li>
-<li><strong>PCI DSS v4.0</strong> as a Level 1 service provider at launch, with P2PE terminals so no cardholder data touches Wallet Partners' systems in clear text.</li></ul>
+<li><strong>PCI DSS v4.0</strong> as a Level 1 service provider at launch, with P2PE terminals so no cardholder data touches Bombero Partners' systems in clear text.</li></ul>
 <h2>2. Merchant onboarding (KYB / KYC)</h2>
-<ul><li>Legal-entity verification: constitutive documents, RNC, commercial registry, MICM resolution, proof of address and site photographs.</li><li>Identification of directors and beneficial owners at 10% or more; identity documents; PEP, sanctions and adverse-media screening.</li><li>Financial profile: expected monthly volume, average ticket, card-present share; bank-account ownership verification.</li><li>Risk rating and approval workflow: Wallet Partners prepares and recommends; the bank approves, conditions or declines. Refresh at least every two years or on trigger events.</li></ul>
+<ul><li>Legal-entity verification: constitutive documents, RNC, commercial registry, MICM resolution, proof of address and site photographs.</li><li>Identification of directors and beneficial owners at 10% or more; identity documents; PEP, sanctions and adverse-media screening.</li><li>Financial profile: expected monthly volume, average ticket, card-present share; bank-account ownership verification.</li><li>Risk rating and approval workflow: Bombero Partners prepares and recommends; the bank approves, conditions or declines. Refresh at least every two years or on trigger events.</li></ul>
 <h2>3. Monitoring and fraud</h2>
 <ul><li>Fuel rules: per-card and per-pump velocity limits, ticket caps consistent with tank capacity, duplicate detection, unusual night-time patterns and card-testing detection.</li><li>Portfolio monitoring against network chargeback and fraud thresholds; early-warning reporting to the bank.</li><li>Escalation to the bank's compliance function; suspicious-transaction reporting through the bank to the UAF and, where applicable, FinCEN.</li></ul>
 <h2>4. Funds, settlement and reserves</h2>
-<ul><li>Network settlement is received by the sponsoring bank into a program account it controls. Wallet Partners does not hold merchant funds outside that structure.</li><li>Settlement to merchants in US dollars, with reserves and release rules set with the bank per risk tier.</li><li>Daily reconciliation and monthly reporting to the bank.</li></ul>
+<ul><li>Network settlement is received by the sponsoring bank into a program account it controls. Bombero Partners does not hold merchant funds outside that structure.</li><li>Settlement to merchants in US dollars, with reserves and release rules set with the bank per risk tier.</li><li>Daily reconciliation and monthly reporting to the bank.</li></ul>
 <h2>5. Information security</h2>
 <ul><li>Validated P2PE terminals; tokenisation; no PAN, track or CVV stored.</li><li>Segmented cloud environment, encryption at rest, dual-control key management, MFA for all administrative access, central logging and alerting.</li><li>Annual penetration testing, vulnerability management, vendor assessments and an incident-response plan with notification timelines agreed with the bank and under Law 172-13.</li><li>Coordinated vulnerability disclosure via <a href="/.well-known/security.txt">security.txt</a>.</li></ul>
 <h2>6. Governance</h2>
@@ -347,10 +347,10 @@ def compliance(ctx):
 def notice(ctx):
     e = ctx["CONTACT_EMAIL"]
     return _page("Legal", "Legal notice", "Identification of the website operator and related disclosures.", f"""
-<h2>Website operator</h2><p><strong>Wallet Partners LLC</strong><br />A limited liability company organised under the laws of the United States.<br />Email: <a href="mailto:{e}">{e}</a></p>
+<h2>Website operator</h2><p><strong>Wallet Partners LLC</strong>, doing business as <strong>Bombero Partners</strong><br />A limited liability company organised under the laws of the United States.<br />Email: <a href="mailto:{e}">{e}</a></p>
 <p>Registered agent, state of formation and registration number are provided on request and will be published here at launch together with the details of the Dominican operating affiliate.</p>
 <h2>Regulatory status</h2><p>Wallet Partners LLC is not a bank, savings institution, money transmitter or licensed financial intermediary in the Dominican Republic and is not currently a registered payment facilitator with any card network. Services will be provided only under a sponsorship agreement with a licensed member financial institution, whose identity will be disclosed in the merchant agreement.</p>
-<h2>Trademarks</h2><p>"Wallet Partners" and its logo are trademarks of Wallet Partners LLC. TotalEnergies, Shell, Texaco, Next, Axxon, Tropigás, Sigma, VP Racing, Óptimo Gas, Trovasa, Visa, Mastercard, CardNET, AZUL, Visanet and other names belong to their owners and are cited only to identify locations and market participants, implying no sponsorship, affiliation or endorsement.</p>
+<h2>Trademarks</h2><p>"Bombero Partners" is a trade name (DBA) of Wallet Partners LLC; the name and logo are the property of Wallet Partners LLC. TotalEnergies, Shell, Texaco, Next, Axxon, Tropigás, Sigma, VP Racing, Óptimo Gas, Trovasa, Visa, Mastercard, CardNET, AZUL, Visanet and other names belong to their owners and are cited only to identify locations and market participants, implying no sponsorship, affiliation or endorsement.</p>
 <h2>Content and images</h2><p>Station data was compiled from public listings on {ctx['DATA_DATE']}. Photographic images on this site are computer-generated illustrations and do not depict specific stations, people or brands. Map data © OpenStreetMap contributors (ODbL); basemap © CARTO.</p>
 <h2>Hosting</h2><p>This site is served by Cloudflare, Inc.</p>
 """)

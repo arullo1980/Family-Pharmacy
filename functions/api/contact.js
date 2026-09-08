@@ -24,7 +24,7 @@ export async function onRequestPost(context) {
     method: 'POST',
     headers: { 'Authorization': `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      from: env.CONTACT_FROM || 'Wallet Partners Website <noreply@walletpartnersllc.com>',
+      from: env.CONTACT_FROM || 'Bombero Partners <noreply@bomberopartners.com.do>',
       to: [env.CONTACT_TO],
       reply_to: email,
       subject: `${body.type === 'estacion' ? 'Afiliación de estación' : 'Consulta web'}: ${org || name}`,

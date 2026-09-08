@@ -1,6 +1,7 @@
 # Launch checklist — before sharing with the sponsoring bank
 
 ## Content to confirm or fill in
+- [ ] **Trade name.** The site and deck present Bombero Partners as a DBA of Wallet Partners LLC. Register it: a DBA / fictitious-name filing in the LLC's home state, and a *nombre comercial* registration for "Bombero Partners" at ONAPI in the Dominican Republic (needed before signing merchant agreements under that name).
 - [ ] **Company identification** on `/legal/aviso-legal/` and `/nosotros/`: state of formation, registration number, registered agent, Dominican affiliate (if formed). Currently described generically.
 - [ ] **Leadership bios**: add a team slide to the deck and/or a section on `/nosotros/`.
 - [ ] **Station opening hours and phones** were taken from public listings on 2026-09-08 — re-verify during onboarding.

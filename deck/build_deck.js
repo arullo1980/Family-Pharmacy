@@ -29,7 +29,7 @@ try {
 const pres = new pptxgen();
 pres.layout = 'LAYOUT_WIDE'; // 13.33 x 7.5
 pres.author = 'Wallet Partners LLC'; pres.company = 'Wallet Partners LLC';
-pres.title = 'Wallet Partners LLC — Fuel-retail acquiring program, Dominican Republic';
+pres.title = 'Bombero Partners (Wallet Partners LLC) — Fuel-retail acquiring program, Dominican Republic';
 const W = 13.33, H = 7.5, M = 0.6;
 let n = 0;
 
@@ -37,7 +37,7 @@ function base(dark = false) {
   const s = pres.addSlide(); n++;
   s.background = { color: dark ? C.navy : C.white };
   if (!dark) {
-    s.addText('Wallet Partners LLC · Sponsor-bank briefing · September 2026 · Confidential', { x: M, y: H - 0.45, w: 8, h: 0.3, fontFace: FONT, fontSize: 9, color: C.ink3, isTextBox: true, margin: 0 });
+    s.addText('Wallet Partners LLC d/b/a Bombero Partners · Sponsor-bank briefing · September 2026 · Confidential', { x: M, y: H - 0.45, w: 8, h: 0.3, fontFace: FONT, fontSize: 9, color: C.ink3, isTextBox: true, margin: 0 });
     s.addText(String(n), { x: W - M - 0.6, y: H - 0.45, w: 0.6, h: 0.3, fontFace: FONT, fontSize: 9, color: C.ink3, align: 'right', isTextBox: true, margin: 0 });
   }
   return s;
@@ -70,8 +70,8 @@ const tblRow = (cells, fs = 10) => cells.map(t => ({ text: String(t), options: {
     s.addShape(pres.ShapeType.rect, { x: 6.9, y: 0, w: 0.9, h: H, fill: { color: C.navy, transparency: 15 }, line: { color: C.navy, transparency: 100 } });
     s.addText('SPONSOR-BANK BRIEFING · DOMINICAN REPUBLIC', { x: M, y: 1.4, w: 6, h: 0.35, fontFace: FONT, fontSize: 11, bold: true, color: C.amber, charSpacing: 2, isTextBox: true, margin: 0 });
     s.addText('Card acceptance built for gasoline stations.', { x: M, y: 1.85, w: 5.9, h: 2.0, fontFace: FONT, fontSize: 40, bold: true, color: C.white, isTextBox: true, margin: 0, valign: 'top' });
-    s.addText('A fuel-retail acquiring program for the Dominican Republic, cleared in US dollars and operated by Wallet Partners LLC under the sponsorship of a licensed member bank.', { x: M, y: 3.95, w: 5.7, h: 1.1, fontFace: FONT, fontSize: 15, color: 'DFE7F1', isTextBox: true, margin: 0, valign: 'top' });
-    s.addText('Wallet Partners LLC  ·  September 2026  ·  Confidential', { x: M, y: 6.6, w: 6, h: 0.35, fontFace: FONT, fontSize: 11, color: 'A9B8C9', isTextBox: true, margin: 0 });
+    s.addText('Bombero Partners: a fuel-retail acquiring program for the Dominican Republic, cleared in US dollars and operated by Wallet Partners LLC under the sponsorship of a licensed member bank.', { x: M, y: 3.95, w: 5.7, h: 1.1, fontFace: FONT, fontSize: 15, color: 'DFE7F1', isTextBox: true, margin: 0, valign: 'top' });
+    s.addText('Wallet Partners LLC d/b/a Bombero Partners  ·  bomberopartners.com.do  ·  September 2026  ·  Confidential', { x: M, y: 6.6, w: 6, h: 0.35, fontFace: FONT, fontSize: 11, color: 'A9B8C9', isTextBox: true, margin: 0 });
     s.addNotes('Opening. Frame the meeting: we are asking for sponsorship of a vertical acquiring program, we bring a launch cohort of 20 stations and a pricing model the segment has publicly asked for.');
   }
   // 2. Executive summary
@@ -79,7 +79,7 @@ const tblRow = (cells, fs = 10) => cells.map(t => ({ text: String(t), options: {
     const s = base(); title(s, 'Executive summary', 'Three things to take away from this briefing');
     const cols = [
       ['FaFire', 'The moment', ['In July 2026 fuel retailers (ANADEGAS) threatened to pull card terminals from 780+ stations over 1.95–2.50% fees.', 'Those fees equal RD$6.59–8.45 per gallon: 25–36% of a State-set RD$25 gross margin.', 'Government-brokered talks with the banks are ongoing; the segment asked for per-gallon pricing.']],
-      ['FaGasPump', 'The program', ['Wallet Partners operates as payment facilitator / program manager under your membership and oversight.', 'Merchant pricing 25 bps below each station\'s current contract, no monthly minimum, terminals on monthly rental, transactions cleared in US dollars.', 'Launch cohort: 20 stations in Santo Domingo\'s Polígono Central, 9 of them open 24 h.']],
+      ['FaGasPump', 'The program', ['Wallet Partners LLC, trading in the DR as Bombero Partners, operates as payment facilitator / program manager under your membership and oversight.', 'Merchant pricing 25 bps below each station\'s current contract, no monthly minimum, terminals on monthly rental, transactions cleared in US dollars.', 'Launch cohort: 20 stations in Santo Domingo\'s Polígono Central, 9 of them open 24 h.']],
       ['FaHandshake', 'The ask', ['Sponsorship agreement and registration of Wallet Partners as payment facilitator.', 'Program settlement account with agreed reserves; merchant approval SLA of 10 business days.', 'Named relationship and compliance contacts. Target: first live station within one quarter.']],
     ];
     for (let i = 0; i < 3; i++) {
@@ -288,8 +288,8 @@ const tblRow = (cells, fs = 10) => cells.map(t => ({ text: String(t), options: {
     s.addShape(pres.ShapeType.roundRect, { x: 8.0, y: 1.0, w: 4.73, h: 5.4, rectRadius: 0.1, fill: { color: C.navy2 }, line: { color: C.navy2 } });
     s.addText('Proposed next steps', { x: 8.3, y: 1.25, w: 4.2, h: 0.5, fontFace: FONT, fontSize: 18, bold: true, color: C.white, isTextBox: true, margin: 0 });
     s.addText(bullets(['NDA and exchange of the document set (AML programme, underwriting policy, PCI plan, reserve model)', 'Working session with merchant-acquiring and compliance teams, in English or Spanish', 'Joint review of three sample merchant files from the cohort', 'Draft term sheet within 30 days of the working session', 'Target: first live station within one quarter of signature'], { color: 'DFE7F1' }), { x: 8.3, y: 1.9, w: 4.2, h: 3.5, fontFace: FONT, fontSize: 12.5, isTextBox: true, margin: 0, valign: 'top' });
-    s.addText('info@walletpartnersllc.com', { x: 8.3, y: 5.65, w: 4.2, h: 0.4, fontFace: FONT, fontSize: 13, bold: true, color: C.amber, isTextBox: true, margin: 0 });
-    s.addText('Wallet Partners LLC  ·  Confidential', { x: M, y: 6.75, w: 6, h: 0.35, fontFace: FONT, fontSize: 10, color: 'A9B8C9', isTextBox: true, margin: 0 });
+    s.addText('info@walletpartnersllc.com  ·  bomberopartners.com.do', { x: 8.3, y: 5.65, w: 4.2, h: 0.4, fontFace: FONT, fontSize: 13, bold: true, color: C.amber, isTextBox: true, margin: 0 });
+    s.addText('Wallet Partners LLC d/b/a Bombero Partners  ·  Confidential', { x: M, y: 6.75, w: 6, h: 0.35, fontFace: FONT, fontSize: 10, color: 'A9B8C9', isTextBox: true, margin: 0 });
     s.addNotes('Close by agreeing the date for the working session and who from the bank attends.');
   }
   // 17. Appendix: sources

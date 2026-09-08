@@ -93,20 +93,20 @@ CHROME = {
     "es": dict(skip="Ir al contenido", tagline="Pagos para estaciones de combustible · RD", menu="Menú", nav="Principal",
                cta='<a class="cta" href="/afiliese/">Afilie su estación</a>',
                cookie='Este sitio no usa cookies de publicidad ni de analítica. Guarda una sola preferencia en su navegador para recordar que vio este aviso. <a href="/legal/cookies/">Aviso de cookies</a>', ok="Entendido",
-               f_about="Aceptación de tarjetas, comercio registrado y liquidación diseñados para estaciones de combustible en la República Dominicana, operados bajo la supervisión de un banco patrocinador y las reglas de las redes de tarjetas.",
+               f_about="Aceptación de tarjetas, comercio registrado y liquidación diseñados para las bombas de la República Dominicana, operados por Wallet Partners LLC bajo la supervisión de un banco patrocinador y las reglas de las redes de tarjetas.",
                f_cols=[("Estaciones", [("/como-funciona/", "Cómo funciona"), ("/precios/", "Precios"), ("/zona/", "Zona de lanzamiento"), ("/preguntas/", "Preguntas frecuentes"), ("/afiliese/", "Afilie su estación")]),
                        ("Empresa", [("/bancos/", "Bancos y aliados"), ("/nosotros/", "Nosotros"), ("/contacto/", "Contacto"), ("/en/", "English version"), ("/.well-known/security.txt", "security.txt")]),
                        ("Legal", [("/legal/privacidad/", "Privacidad"), ("/legal/terminos/", "Términos de uso"), ("/legal/cookies/", "Cookies"), ("/legal/cumplimiento/", "Cumplimiento"), ("/legal/aviso-legal/", "Aviso legal"), ("/legal/accesibilidad/", "Accesibilidad")])],
-               disclaimer="Wallet Partners LLC no es un banco. Los servicios de aceptación de tarjetas se prestan bajo el patrocinio de una entidad financiera miembro autorizada; las condiciones definitivas se establecen en el contrato de afiliación. Las marcas de combustible mencionadas pertenecen a sus titulares y se citan solo para identificar ubicaciones. Las cifras de mercado provienen de fuentes públicas citadas.",
+               disclaimer="Bombero Partners es un nombre comercial (DBA) de Wallet Partners LLC. Wallet Partners LLC no es un banco. Los servicios de aceptación de tarjetas se prestan bajo el patrocinio de una entidad financiera miembro autorizada; las condiciones definitivas se establecen en el contrato de afiliación. Las marcas de combustible mencionadas pertenecen a sus titulares y se citan solo para identificar ubicaciones. Las cifras de mercado provienen de fuentes públicas citadas.",
                rights="Todos los derechos reservados.", place="Santo Domingo · Estados Unidos"),
     "en": dict(skip="Skip to content", tagline="Fuel-station payments · Dominican Republic", menu="Menu", nav="Primary",
                cta='<a class="cta" href="/en/sign-up/">Sign up your station</a>',
                cookie='This site uses no advertising or analytics cookies. It stores one preference in your browser to remember that you have seen this notice. <a href="/en/legal/cookies/">Cookie notice</a>', ok="OK",
-               f_about="Card acceptance, merchant-of-record and settlement services designed for gasoline stations in the Dominican Republic, operated under the oversight of a sponsoring bank and card-network rules.",
+               f_about="Card acceptance, merchant-of-record and settlement services designed for gasoline stations in the Dominican Republic, operated by Wallet Partners LLC under the oversight of a sponsoring bank and card-network rules.",
                f_cols=[("Stations", [("/en/how-it-works/", "How it works"), ("/en/pricing/", "Pricing"), ("/en/launch-zone/", "Launch zone"), ("/en/faq/", "FAQ"), ("/en/sign-up/", "Sign up your station")]),
                        ("Company", [("/en/banks/", "Banks & partners"), ("/en/about/", "About"), ("/en/contact/", "Contact"), ("/", "Versión en español"), ("/.well-known/security.txt", "security.txt")]),
                        ("Legal", [("/en/legal/privacy/", "Privacy"), ("/en/legal/terms/", "Terms of use"), ("/en/legal/cookies/", "Cookies"), ("/en/legal/compliance/", "Compliance"), ("/en/legal/notice/", "Legal notice"), ("/en/legal/accessibility/", "Accessibility")])],
-               disclaimer="Wallet Partners LLC is not a bank. Card-acceptance services are provided under the sponsorship of a licensed member financial institution; final terms are set in the merchant agreement. Fuel brands mentioned belong to their owners and appear only to identify locations. Market figures come from the public sources cited.",
+               disclaimer="Bombero Partners is a trade name (DBA) of Wallet Partners LLC. Wallet Partners LLC is not a bank. Card-acceptance services are provided under the sponsorship of a licensed member financial institution; final terms are set in the merchant agreement. Fuel brands mentioned belong to their owners and appear only to identify locations. Market figures come from the public sources cited.",
                rights="All rights reserved.", place="Santo Domingo · United States"),
 }
 LOGO = """<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="8" width="36" height="26" rx="6" fill="#0f2440"/><rect x="2" y="14" width="36" height="6" fill="#eda100"/><circle cx="29" cy="26" r="4" fill="#2a78d6"/><circle cx="24" cy="26" r="4" fill="#eda100" opacity=".9"/></svg>"""
@@ -143,7 +143,7 @@ def layout(page, body, stations_json=None):
         ([{"@type": "ListItem", "position": 2, "name": page["title"].split(" | ")[0], "item": url}] if path != "/" else [])
     })
     org = json.dumps({
-        "@context": "https://schema.org", "@type": "Organization", "name": COMPANY, "url": SITE_URL + "/",
+        "@context": "https://schema.org", "@type": "Organization", "name": "Bombero Partners", "legalName": COMPANY, "alternateName": "Bombero Partners, a DBA of Wallet Partners LLC", "url": SITE_URL + "/",
         "logo": SITE_URL + "/assets/img/logo.svg", "email": CONTACT_EMAIL,
         "description": "Aceptación de tarjetas y servicios de comercio registrado para estaciones de combustible en la República Dominicana.",
         "areaServed": {"@type": "Country", "name": "Dominican Republic"},
@@ -182,7 +182,7 @@ def layout(page, body, stations_json=None):
 <a class="skip" href="#main">{ch["skip"]}</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="{'/en/' if lang == 'en' else '/'}">{LOGO}<span>Wallet Partners<small>{ch["tagline"]}</small></span></a>
+    <a class="brand" href="{'/en/' if lang == 'en' else '/'}">{LOGO}<span>Bombero Partners<small>{ch["tagline"]}</small></span></a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav">{ch["menu"]}</button>
     <nav class="nav" id="nav" aria-label="{ch["nav"]}">{nav}{lang_link}{cta}</nav>
   </div>
@@ -194,7 +194,7 @@ def layout(page, body, stations_json=None):
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <h4>{COMPANY}</h4>
+        <h4>Bombero Partners</h4>
         <p>{ch["f_about"]}</p>
         <p><a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
       </div>

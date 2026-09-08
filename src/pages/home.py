@@ -8,7 +8,7 @@ def body(ctx):
   <div class="wrap">
     <span class="eyebrow">Para estaciones de combustible · República Dominicana</span>
     <h1>Acepte tarjetas y pague 0.25% menos que con su contrato actual.</h1>
-    <p class="lead">Wallet Partners es un programa de aceptación de tarjetas hecho solo para estaciones de gasolina: una tarifa 25 puntos básicos por debajo de su contrato de procesamiento actual, sin mínimo mensual, transacciones liquidadas en dólares, terminales para el patio de bombas y soporte en Santo Domingo. Operamos bajo el patrocinio de un banco autorizado.</p>
+    <p class="lead">Bombero Partners es un programa de aceptación de tarjetas hecho solo para estaciones de gasolina: una tarifa 25 puntos básicos por debajo de su contrato de procesamiento actual, sin mínimo mensual, transacciones liquidadas en dólares, terminales para el patio de bombas y soporte en Santo Domingo. Operamos bajo el patrocinio de un banco autorizado.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="/afiliese/">Afilie su estación</a>
       <a class="btn btn-ghost" href="/precios/">Calcule su ahorro</a>
@@ -77,7 +77,7 @@ def body(ctx):
       <div class="card">{icon("doc")}<h3>Estados de cuenta claros</h3><p>Verá el intercambio, la tarifa de la red y nuestra tarifa por separado. Alquiler mensual de la terminal y ningún otro cargo fijo.</p></div>
       <div class="card">{icon("shield")}<h3>Protección contra fraude</h3><p>Límites por bomba y por tarjeta, cumplimiento EMV y una mesa de disputas que trabaja los contracargos en nombre de la estación.</p></div>
       <div class="card">{icon("map")}<h3>Soporte en la calle</h3><p>Técnicos en Santo Domingo, en español, con reposición de terminal en horas, no en semanas.</p></div>
-      <div class="card">{icon("bank")}<h3>Respaldo bancario</h3><p>Los fondos se liquidan a través de un banco patrocinador autorizado y las reglas de Visa y Mastercard. Wallet Partners no retiene su dinero.</p></div>
+      <div class="card">{icon("bank")}<h3>Respaldo bancario</h3><p>Los fondos se liquidan a través de un banco patrocinador autorizado y las reglas de Visa y Mastercard. Bombero Partners no retiene su dinero.</p></div>
     </div>
   </div>
 </section>

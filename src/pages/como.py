@@ -2,7 +2,7 @@ from common import icon
 
 def body(ctx):
     return f"""
-<div class="page-title"><div class="wrap"><span class="eyebrow">Cómo funciona</span><h1>De la bomba a su cuenta, sin sorpresas.</h1><p>Así funciona el programa de aceptación de tarjetas de Wallet Partners para estaciones de combustible, desde el registro hasta la liquidación.</p></div></div>
+<div class="page-title"><div class="wrap"><span class="eyebrow">Cómo funciona</span><h1>De la bomba a su cuenta, sin sorpresas.</h1><p>Así funciona el programa de aceptación de tarjetas de Bombero Partners para estaciones de combustible, desde el registro hasta la liquidación.</p></div></div>
 
 <section><div class="wrap">
   <div class="section-head"><h2>Cada transacción, paso a paso</h2></div>
