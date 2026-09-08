@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+node_modules/
+.wrangler/
+.DS_Store
+deck/node_modules/
+deck/qa/

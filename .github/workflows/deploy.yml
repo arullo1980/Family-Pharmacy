@@ -1,0 +1,72 @@
+name: Build and deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main, "claude/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install openpyxl
+      - name: Build site
+        run: python3 build.py
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://walletpartners.do' }}
+      - name: Sanity checks
+        run: |
+          test -f site/index.html
+          test -f site/zona/index.html && test -f site/en/index.html
+          test -f site/sitemap.xml
+          grep -q "WP_STATIONS" site/zona/index.html
+      - name: Check whether Cloudflare secrets are configured
+        id: cf
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$CF_API_TOKEN" ] && [ -n "$CF_ACCOUNT_ID" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID not set; build verified, deploy skipped."
+          fi
+      - name: Ensure the Pages project exists
+        if: steps.cf.outputs.enabled == 'true'
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PROJECT: wallet-partners-dr
+        run: |
+          set -uo pipefail
+          auth=(-H "Authorization: Bearer ${CF_API_TOKEN}" -H "Content-Type: application/json")
+          echo "Token check:"
+          curl -sS "${auth[@]}" https://api.cloudflare.com/client/v4/user/tokens/verify | sed 's/"id":"[^"]*"/"id":"***"/'
+          echo
+          api="https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/pages/projects"
+          code=$(curl -sS -o /tmp/proj.json -w '%{http_code}' "${auth[@]}" "${api}/${PROJECT}")
+          echo "GET project -> HTTP ${code}"
+          if [ "$code" = "200" ]; then echo "Pages project ${PROJECT} already exists"; exit 0; fi
+          cat /tmp/proj.json; echo
+          echo "Creating Pages project ${PROJECT}"
+          code=$(curl -sS -o /tmp/create.json -w '%{http_code}' -X POST "${auth[@]}" \
+            -d "{\"name\":\"${PROJECT}\",\"production_branch\":\"main\"}" "${api}")
+          echo "POST project -> HTTP ${code}"
+          cat /tmp/create.json; echo
+          [ "$code" = "200" ] || [ "$code" = "201" ] || { echo "::error::Could not create the Pages project. Check the token permissions (Account > Cloudflare Pages > Edit, Account Resources = your account) and the account ID."; exit 1; }
+      - name: Deploy to Cloudflare Pages
+        if: steps.cf.outputs.enabled == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy site --project-name=wallet-partners-dr --branch=${{ github.ref_name }}
