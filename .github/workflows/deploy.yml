@@ -1,0 +1,37 @@
+name: Build and deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main, "claude/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install openpyxl
+      - name: Build site
+        run: python3 build.py
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://walletpartners.do' }}
+      - name: Sanity checks
+        run: |
+          test -f site/index.html
+          test -f site/stations/index.html
+          test -f site/sitemap.xml
+          grep -q "WP_STATIONS" site/stations/index.html
+      - name: Deploy to Cloudflare Pages
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy site --project-name=wallet-partners-dr --branch=${{ github.ref_name }}

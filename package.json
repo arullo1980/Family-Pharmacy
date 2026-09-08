@@ -1,0 +1,13 @@
+{
+  "name": "wallet-partners-dr-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Wallet Partners LLC — card processing for gasoline stations in the Dominican Republic (static site for Cloudflare Pages)",
+  "scripts": {
+    "build": "python3 build.py",
+    "serve": "python3 -m http.server 8080 --directory site",
+    "deploy": "npx wrangler pages deploy site --project-name wallet-partners-dr",
+    "dev": "npx wrangler pages dev site"
+  },
+  "license": "UNLICENSED"
+}

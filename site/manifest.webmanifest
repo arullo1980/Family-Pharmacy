@@ -1,0 +1,13 @@
+{
+  "name": "Wallet Partners LLC",
+  "short_name": "Wallet Partners",
+  "description": "Card acceptance for gasoline stations in the Dominican Republic",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f7f9fb",
+  "theme_color": "#0f2440",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

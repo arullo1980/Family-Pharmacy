@@ -1,0 +1,8 @@
+# Cloudflare Pages project configuration (used by `wrangler pages deploy` and the GitHub Action)
+name = "wallet-partners-dr"
+compatibility_date = "2026-09-01"
+pages_build_output_dir = "site"
+
+# Environment variables for the contact-form Function are set as encrypted
+# secrets in the Cloudflare dashboard (Pages > Settings > Variables and Secrets):
+#   RESEND_API_KEY, CONTACT_TO, CONTACT_FROM
