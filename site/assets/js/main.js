@@ -69,22 +69,46 @@
     });
   });
 
-  // Contact form: posts to the Pages Function at /api/contact; falls back to mailto.
-  var form = document.querySelector('form.contact');
-  if (form) {
+  // Forms (contacto, afiliación): post to the Pages Function at /api/contact; fall back to mailto.
+  document.querySelectorAll('form.contact').forEach(function (form) {
+    var en = document.documentElement.lang === 'en';
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
       var status = form.querySelector('.form-status');
       var data = Object.fromEntries(new FormData(form).entries());
       if (data.website) return; // honeypot
-      status.textContent = 'Sending…';
+      var missing = Array.prototype.filter.call(form.querySelectorAll('[required]'), function (el) { return !el.value.trim(); });
+      if (missing.length) { status.textContent = en ? 'Please complete the required fields.' : 'Complete los campos obligatorios.'; missing[0].focus(); return; }
+      status.textContent = en ? 'Sending…' : 'Enviando…';
       fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
         .then(function (r) { return r.ok ? r.json() : Promise.reject(r); })
-        .then(function () { status.textContent = 'Thank you. We will reply within one business day.'; form.reset(); })
+        .then(function () { status.textContent = en ? 'Thank you. We will reply within one business day.' : 'Gracias. Le contactamos en un día hábil.'; form.reset(); })
         .catch(function () {
-          var body = encodeURIComponent('Name: ' + data.name + '\nOrganization: ' + data.org + '\nEmail: ' + data.email + '\n\n' + data.message);
-          status.innerHTML = 'The form endpoint is not enabled yet. <a href="mailto:info@walletpartnersllc.com?subject=Wallet%20Partners%20inquiry&body=' + body + '">Send this message by email instead</a>.';
+          var lines = Object.keys(data).filter(function (k) { return k !== 'website' && data[k]; }).map(function (k) { return k + ': ' + data[k]; });
+          var body = encodeURIComponent(lines.join('\n'));
+          var subj = encodeURIComponent(data.type === 'estacion' ? 'Afiliación de estación' : 'Consulta Wallet Partners');
+          status.innerHTML = (en ? 'The form endpoint is not enabled yet. ' : 'El envío automático aún no está habilitado. ') +
+            '<a href="mailto:info@walletpartnersllc.com?subject=' + subj + '&body=' + body + '">' + (en ? 'Send this by email instead' : 'Envíelo por correo con un clic') + '</a>.';
         });
     });
+  });
+
+  // Pricing calculator: what a percentage fee costs per gallon
+  var pc = document.getElementById('calc-precios');
+  if (pc) {
+    var g = function (id) { return document.getElementById(id); };
+    var rd = function (n) { return 'RD$' + Math.round(n).toLocaleString('es-DO'); };
+    var runP = function () {
+      var gal = +g('p-gal').value || 0, price = +g('p-precio').value || 0, share = (+g('p-tarjeta').value || 0) / 100;
+      var fee = (+g('p-com').value || 0) / 100, margin = +g('p-margen').value || 0;
+      var cardSales = gal * price * share, com = cardSales * fee, cardGal = gal * share;
+      var perGal = cardGal ? com / cardGal : 0;
+      g('p-o-ventas').textContent = rd(cardSales);
+      g('p-o-com').textContent = rd(com);
+      g('p-o-porgal').textContent = 'RD$' + perGal.toFixed(2);
+      g('p-o-margen').textContent = margin ? (perGal / margin * 100).toFixed(0) + '%' : '—';
+      g('p-o-anual').textContent = rd(com * 12);
+    };
+    pc.addEventListener('input', runP); runP();
   }
 })();

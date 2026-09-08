@@ -1,13 +1,15 @@
 # Launch checklist — before sharing with the sponsoring bank
 
 ## Content to confirm or fill in
-- [ ] **Company identification** on `/legal/notice/` and `/about/`: state of formation, registration number, registered agent, Dominican affiliate (if formed). Currently described generically.
-- [ ] **Leadership bios** are referenced as "in the sponsor-bank pack" on `/about/`; add names/bios there if you want them public.
+- [ ] **Company identification** on `/legal/aviso-legal/` and `/nosotros/`: state of formation, registration number, registered agent, Dominican affiliate (if formed). Currently described generically.
+- [ ] **Leadership bios**: add a team slide to the deck and/or a section on `/nosotros/`.
 - [ ] **Station opening hours and phones** were taken from public listings on 2026-09-08 — re-verify during onboarding.
 - [ ] **Polygon boundary** on the map is an approximation drawn from the four avenues; adjust the coordinates in `build.py` (`POLYGON`) if you want it tighter.
-- [ ] **Scenario calculator defaults** (`/market/`): RD$3.3 M card volume per station per month is the national average implied by RD$41 bn / ≈1,025 stations; 1.95% MDR; 20% bank share placeholder; RD$62/US$. Replace with your own model when you have it.
-- [ ] **Tax treatment** paragraph on `/legal/compliance/` (Norma 08-04 withholding vs. fuel's ITBIS exemption) is flagged "to be confirmed with tax counsel" — confirm before a bank compliance team reads it.
-- [ ] **Images** are AI-generated illustrations (disclosed on `/legal/notice/`). Replace with real site photos of the twenty stations when you have them (`site/assets/img/`, 16:9, ≤ 200 KB WebP).
+- [ ] **Pricing page** (`/precios/`) promises: no terminal charge in the first wave, no monthly minimum, one-year contract cancellable with 30 days' notice. Confirm these are the terms you will offer, or edit `src/pages/precios.py` and `src/pages/preguntas.py`.
+- [ ] **Scenario slide** (deck slide 13): RD$3.3 M card volume per station per month (national average implied by RD$41 bn / ≈1,025 stations), 1.95% MDR, RD$62/US$. Replace with your own model.
+- [ ] **Tax treatment** paragraph on `/legal/cumplimiento/` and deck slide 14 (Norma 08-04 withholding vs. fuel's ITBIS exemption) is flagged "to be confirmed with tax counsel" — confirm before a bank compliance team reads it.
+- [ ] **Images** are AI-generated illustrations (disclosed on `/legal/aviso-legal/`). Replace with real site photos of the twenty stations when you have them (`site/assets/img/`, 16:9, ≤ 200 KB WebP).
+- [ ] **Launch-zone wording**: the public site calls the 20 stations the "zona de lanzamiento" and never states they have signed; the deck (slide 7) calls them a warm pipeline. Keep it that way unless the stations agree to be named publicly.
 - [ ] **Sources**: news links point to Diario Libre, Listín, Infobae, elDinero, BCRD, MICM. They were current on 2026-09-08; re-check before the meeting.
 
 ## Technical

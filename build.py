@@ -27,7 +27,7 @@ POLYGON = [[18.4838, -69.9432], [18.4815, -69.9112], [18.4622, -69.9112], [18.45
 BRANDS = [
     ("totalenergies", "TotalEnergies"), ("next", "Next"), ("axxon", "Axxon"), ("tropig", "Tropigás"),
     ("shell", "Shell"), ("texaco", "Texaco"), ("sigma", "Sigma"), ("vp racing", "VP Racing"),
-    ("óptimo", "Óptimo Gas"), ("trovasa", "Trovasa"), ("la lira", "Independent"),
+    ("óptimo", "Óptimo Gas"), ("trovasa", "Trovasa"), ("la lira", "Independiente"),
 ]
 
 def brand_of(name):
@@ -51,7 +51,7 @@ def load_stations():
         out.append({
             "id": int(r[0]), "name": r[1], "address": r[2], "phone": r[3],
             "lat": lat, "lng": lng, "hours": hours,
-            "zone": "Inside polygon" if r[9] == "Sí" else "Adjacent / edge",
+            "zone": "Dentro del polígono" if r[9] == "Sí" else "Borde / adyacente",
             "inside": r[9] == "Sí", "distKm": float(r[10]),
             "brand": brand_of(r[1]), "open24h": "24" in hours,
             "maps": f"https://www.google.com/maps/search/?api=1&query={lat},{lng}",
@@ -82,18 +82,24 @@ def write_data(stations):
 
 # ---------- layout ----------
 NAV = [
-    ("/", "Home"), ("/stations/", "Stations"), ("/market/", "Market"),
-    ("/solution/", "Solution"), ("/about/", "About"), ("/contact/", "Contact"),
+    ("/", "Inicio"), ("/como-funciona/", "Cómo funciona"), ("/precios/", "Precios"),
+    ("/zona/", "Zona de lanzamiento"), ("/preguntas/", "Preguntas"), ("/bancos/", "Bancos y aliados"),
+]
+NAV_EN = [
+    ("/en/", "For banks & partners"), ("/zona/", "Launch zone map"), ("/contacto/", "Contact"),
 ]
 LOGO = """<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="8" width="36" height="26" rx="6" fill="#0f2440"/><rect x="2" y="14" width="36" height="6" fill="#eda100"/><circle cx="29" cy="26" r="4" fill="#2a78d6"/><circle cx="24" cy="26" r="4" fill="#eda100" opacity=".9"/></svg>"""
 
 def layout(page, body, stations_json=None):
     path = page["path"]
     url = SITE_URL + path
-    lang = page.get("lang", "en")
+    lang = page.get("lang", "es")
+    items = NAV_EN if lang == "en" else NAV
     nav = "".join(
-        '<a href="%s"%s>%s</a>' % (href, ' aria-current="page"' if href == path else '', label) for href, label in NAV
+        '<a href="%s"%s>%s</a>' % (href, ' aria-current="page"' if href == path else '', label) for href, label in items
     )
+    cta = '<a class="cta" href="/afiliese/">Afilie su estación</a>' if lang != "en" else '<a class="cta" href="/contacto/">Contact us</a>'
+    lang_link = '<a href="/en/" lang="en">English</a>' if lang != "en" else '<a href="/" lang="es">Español</a>'
     head_extra = page.get("head", "")
     scripts = ""
     if page.get("map"):
@@ -104,8 +110,8 @@ def layout(page, body, stations_json=None):
     og_image = SITE_URL + page.get("image", "/assets/img/hero-station.jpg")
     title = html.escape(page["title"])
     desc = html.escape(page["description"])
-    es_alt = f'\n  <link rel="alternate" hreflang="es" href="{SITE_URL}/es/" />' if path == "/" else ""
-    en_alt = f'\n  <link rel="alternate" hreflang="en" href="{SITE_URL}/" />' if path == "/es/" else ""
+    es_alt = f'\n  <link rel="alternate" hreflang="en" href="{SITE_URL}/en/" />' if path == "/" else ""
+    en_alt = f'\n  <link rel="alternate" hreflang="es" href="{SITE_URL}/" />' if path == "/en/" else ""
     breadcrumbs = json.dumps({
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"}] +
@@ -114,9 +120,9 @@ def layout(page, body, stations_json=None):
     org = json.dumps({
         "@context": "https://schema.org", "@type": "Organization", "name": COMPANY, "url": SITE_URL + "/",
         "logo": SITE_URL + "/assets/img/logo.svg", "email": CONTACT_EMAIL,
-        "description": "Card acceptance and merchant-of-record services for fuel retailers in the Dominican Republic.",
+        "description": "Aceptación de tarjetas y servicios de comercio registrado para estaciones de combustible en la República Dominicana.",
         "areaServed": {"@type": "Country", "name": "Dominican Republic"},
-        "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "email": CONTACT_EMAIL, "availableLanguage": ["English", "Spanish"]}],
+        "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "telephone": "", "email": CONTACT_EMAIL, "availableLanguage": ["English", "Spanish"]}],
     })
     return f"""<!DOCTYPE html>
 <html lang="{lang}">
@@ -148,12 +154,12 @@ def layout(page, body, stations_json=None):
   <script type="application/ld+json">{breadcrumbs}</script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main">{'Skip to content' if lang == 'en' else 'Ir al contenido'}</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/">{LOGO}<span>Wallet Partners<small>Fuel-retail payments · Dominican Republic</small></span></a>
-    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
-    <nav class="nav" id="nav" aria-label="Primary">{nav}<a class="cta" href="/contact/">Talk to us</a></nav>
+    <a class="brand" href="/">{LOGO}<span>Wallet Partners<small>Pagos para estaciones de combustible · RD</small></span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menú</button>
+    <nav class="nav" id="nav" aria-label="Principal">{nav}{lang_link}{cta}</nav>
   </div>
 </header>
 <main id="main">
@@ -164,32 +170,32 @@ def layout(page, body, stations_json=None):
     <div class="footer-grid">
       <div>
         <h4>{COMPANY}</h4>
-        <p>Card acceptance, merchant-of-record and settlement services designed for gasoline stations in the Dominican Republic. Built to operate under a sponsoring bank's oversight and card-network rules.</p>
+        <p>Aceptación de tarjetas, comercio registrado y liquidación diseñados para estaciones de combustible en la República Dominicana, operados bajo la supervisión de un banco patrocinador y las reglas de las redes de tarjetas.</p>
         <p><a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></p>
       </div>
       <div>
-        <h4>Site</h4>
-        <ul><li><a href="/stations/">Station map</a></li><li><a href="/market/">Market</a></li><li><a href="/solution/">Solution</a></li><li><a href="/about/">About</a></li><li><a href="/contact/">Contact</a></li><li><a href="/es/">Resumen en español</a></li></ul>
+        <h4>Estaciones</h4>
+        <ul><li><a href="/como-funciona/">Cómo funciona</a></li><li><a href="/precios/">Precios por galón</a></li><li><a href="/zona/">Zona de lanzamiento</a></li><li><a href="/preguntas/">Preguntas frecuentes</a></li><li><a href="/afiliese/">Afilie su estación</a></li></ul>
+      </div>
+      <div>
+        <h4>Empresa</h4>
+        <ul><li><a href="/bancos/">Bancos y aliados</a></li><li><a href="/en/" lang="en">For banks &amp; partners (English)</a></li><li><a href="/nosotros/">Nosotros</a></li><li><a href="/contacto/">Contacto</a></li><li><a href="/.well-known/security.txt">security.txt</a></li></ul>
       </div>
       <div>
         <h4>Legal</h4>
-        <ul><li><a href="/legal/privacy/">Privacy policy</a></li><li><a href="/legal/terms/">Terms of use</a></li><li><a href="/legal/cookies/">Cookie notice</a></li><li><a href="/legal/compliance/">Compliance</a></li><li><a href="/legal/notice/">Legal notice</a></li><li><a href="/legal/accessibility/">Accessibility</a></li></ul>
-      </div>
-      <div>
-        <h4>Data</h4>
-        <ul><li><a href="/data/stations.csv">Stations (CSV)</a></li><li><a href="/data/stations.geojson">Stations (GeoJSON)</a></li><li><a href="/data/stations.json">Stations (JSON)</a></li><li><a href="/.well-known/security.txt">security.txt</a></li></ul>
+        <ul><li><a href="/legal/privacidad/">Privacidad</a></li><li><a href="/legal/terminos/">Términos de uso</a></li><li><a href="/legal/cookies/">Cookies</a></li><li><a href="/legal/cumplimiento/">Cumplimiento</a></li><li><a href="/legal/aviso-legal/">Aviso legal</a></li><li><a href="/legal/accesibilidad/">Accesibilidad</a></li></ul>
       </div>
     </div>
-    <p class="disclaimer">Station data compiled from public map listings on {DATA_DATE}; brand names belong to their respective owners and appear for identification only. Market figures are cited from public sources and are not investment advice. Wallet Partners LLC is not a bank; card acceptance services are provided under sponsorship of a licensed member financial institution.</p>
+    <p class="disclaimer">Wallet Partners LLC no es un banco. Los servicios de aceptación de tarjetas se prestan bajo el patrocinio de una entidad financiera miembro autorizada; las condiciones definitivas se establecen en el contrato de afiliación. Las marcas de combustible mencionadas pertenecen a sus titulares y se citan solo para identificar ubicaciones. Las cifras de mercado provienen de fuentes públicas citadas.</p>
     <div class="footer-bottom">
-      <span>© {YEAR} {COMPANY}. All rights reserved.</span>
-      <span>Site generated {TODAY} · Hosted on Cloudflare</span>
+      <span>© {YEAR} {COMPANY}. Todos los derechos reservados.</span>
+      <span>Santo Domingo · Estados Unidos</span>
     </div>
   </div>
 </footer>
 <div class="cookie" id="cookie-banner" role="dialog" aria-label="Cookie notice">
-  This site uses no advertising or analytics cookies. It stores one preference in your browser to remember that you have seen this notice. <a href="/legal/cookies/">Cookie notice</a>
-  <div class="actions"><button class="btn btn-navy" id="cookie-ok">OK</button></div>
+  Este sitio no usa cookies de publicidad ni de analítica. Guarda una sola preferencia en su navegador para recordar que vio este aviso. <a href="/legal/cookies/">Aviso de cookies</a>
+  <div class="actions"><button class="btn btn-navy" id="cookie-ok">Entendido</button></div>
 </div>
 <script src="/assets/js/main.js" defer></script>{scripts}
 </body>

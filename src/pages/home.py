@@ -1,26 +1,23 @@
-from common import stat_tiles, brand_chart, icon, sources_block, SOURCES
+from common import stat_tiles, icon
 
 def body(ctx):
     st = ctx["stats"]
     return f"""
 <section class="hero">
-  <picture>
-    <source srcset="/assets/img/hero-station.webp" type="image/webp" />
-    <img class="hero-img" src="/assets/img/hero-station.jpg" alt="" fetchpriority="high" />
-  </picture>
+  <picture><source srcset="/assets/img/hero-station.webp" type="image/webp" /><img class="hero-img" src="/assets/img/hero-station.jpg" alt="" fetchpriority="high" /></picture>
   <div class="wrap">
-    <span class="eyebrow">Sponsor-bank briefing · Dominican Republic</span>
-    <h1>Card acceptance built for gasoline stations.</h1>
-    <p class="lead">Wallet Partners LLC is launching a merchant-of-record and acquiring program dedicated to fuel retailers in the Dominican Republic. Twenty stations in Santo Domingo's Polígono Central are signed up to onboard the day our sponsoring bank relationship is in place.</p>
+    <span class="eyebrow">Para estaciones de combustible · República Dominicana</span>
+    <h1>Acepte tarjetas y pague por galón, no por porcentaje.</h1>
+    <p class="lead">Wallet Partners es un programa de aceptación de tarjetas hecho solo para estaciones de gasolina: tarifa fija por galón con tope, liquidación al día siguiente en pesos, terminales para el patio de bombas y soporte en Santo Domingo. Operamos bajo el patrocinio de un banco autorizado.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="/stations/">See the 20 stations on the map</a>
-      <a class="btn btn-ghost" href="/market/">Read the market case</a>
+      <a class="btn btn-primary" href="/afiliese/">Afilie su estación</a>
+      <a class="btn btn-ghost" href="/precios/">Calcule lo que paga hoy</a>
     </div>
     {stat_tiles([
-      (str(st["n"]), "warm-pipeline stations", "Santo Domingo, Polígono Central"),
-      (str(st["h24"]), "open 24 hours", f"{round(100*st['h24']/st['n'])}% of the pipeline"),
-      ("1.95–2.50%", "fees charged today", "per card transaction (ANADEGAS, 2026)"),
-      ("RD$41 bn", "annual card payments at stations", "nationwide (Diario Libre, Jul 2026)"),
+      ("Por galón", "tarifa fija con tope", "no sube cuando sube el precio del combustible"),
+      ("Día siguiente", "liquidación en pesos", "por estación y por turno"),
+      ("24 h", "operación continua", "terminales inalámbricas EMV y sin contacto"),
+      ("Local", "instalación y soporte", "en el Distrito Nacional"),
     ])}
   </div>
 </section>
@@ -28,77 +25,67 @@ def body(ctx):
 <section>
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">The moment</span>
-      <h2>Fuel retailers just told the market they want a better acquiring deal.</h2>
-      <p>In late June 2026 the national fuel-retailers association, ANADEGAS, announced it would remove card terminals from more than 780 affiliated stations in protest at commissions of 1.95% to 2.50% per transaction. On a regulated gross margin of roughly RD$25 per gallon, that fee equals RD$6.59 to RD$8.45 per gallon, or 25% to 36% of what the station keeps. The Government brokered a 30-day dialogue in July; the association asked for a per-gallon or margin-based pricing model instead of a flat percentage.</p>
+      <span class="eyebrow">El problema</span>
+      <h2>Una comisión de 1.95% a 2.50% se lleva entre la cuarta parte y la tercera parte de su margen.</h2>
+      <p>El precio de venta y el margen del detallista los fija el Estado cada semana. Con un margen bruto de unos RD$25 por galón, una comisión porcentual equivale a RD$6.59–8.45 por galón: entre 25% y 36% de lo que le queda a la estación, según las cifras que ANADEGAS hizo públicas en julio de 2026. Cada vez que sube el precio del combustible, sube la comisión, pero no su margen.</p>
     </div>
     <div class="grid grid-3">
-      <div class="card">{icon("pump")}<h3>A segment with one pain point</h3><p>Fuel is a low-margin, high-ticket, price-controlled product. Percentage-based merchant discount rates hit stations harder than any other retail category. Pricing designed around gallons, not percentages, is the product they asked for publicly.</p></div>
-      <div class="card">{icon("bank")}<h3>A concentrated, bankable market</h3><p>Roughly 1,025 stations nationwide, three incumbent acquirers, and card payments at stations of about RD$41 billion a year. A specialised acquirer needs only a small share of stations to reach meaningful volume.</p></div>
-      <div class="card">{icon("map")}<h3>A launch cohort already identified</h3><p>The twenty stations on this site sit within or on the edge of the Polígono Central, the densest commercial district in the country. Nine operate 24 hours; eleven are inside the four boundary avenues and nine are immediately adjacent.</p></div>
+      <div class="card">{icon("pump")}<h3>Tarifa por galón</h3><p>Usted paga pesos por galón vendido con tarjeta, con un tope acordado. La cuenta cuadra con el aviso semanal de precios del MICM, no con un porcentaje que cambia.</p></div>
+      <div class="card">{icon("clock")}<h3>Su dinero al día siguiente</h3><p>Liquidación en pesos dominicanos el siguiente día hábil, con estado de cuenta por turno y por bomba para que su contador y su cajero cuadren sin sorpresas.</p></div>
+      <div class="card">{icon("shield")}<h3>Menos efectivo, menos riesgo</h3><p>Más ventas con tarjeta significan menos efectivo en caja durante el turno de la noche, menos faltantes y menos exposición para su personal.</p></div>
     </div>
   </div>
 </section>
 
 <section class="alt">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Launch pipeline</span>
-      <h2>Where the first twenty stations are.</h2>
-      <p>All twenty locations are within {st['maxDist']:.1f} km of the reference centre at Av. Lope de Vega and Av. 27 de Febrero. Click a marker for hours, phone and a Street View link. The full directory, filters and downloads are on the <a href="/stations/">stations page</a>.</p>
-    </div>
-    <div class="map-wrap">
-      <div id="map" class="compact" role="region" aria-label="Map of pipeline gasoline stations in Santo Domingo"></div>
-      <div class="map-legend"><span><i class="dot inside"></i> Inside Polígono Central ({st['inside']})</span><span><i class="dot edge"></i> Adjacent / edge ({st['edge']})</span><span><i class="poly-key"></i> Approximate boundary</span></div>
-    </div>
-    <div class="grid grid-2 mt-4">
-      {brand_chart(st)}
-      <div class="viz">
-        <h3>Pipeline at a glance</h3>
-        <div class="sub">From the station list compiled on {ctx['DATA_DATE']}</div>
-        <div class="table-wrap"><table>
-          <tr><th>Stations in pipeline</th><td class="num">{st['n']}</td></tr>
-          <tr><th>Inside the Polígono Central</th><td class="num">{st['inside']}</td></tr>
-          <tr><th>Adjacent / on the boundary</th><td class="num">{st['edge']}</td></tr>
-          <tr><th>Open 24 hours</th><td class="num">{st['h24']}</td></tr>
-          <tr><th>Distinct fuel brands</th><td class="num">{len(st['brands'])}</td></tr>
-          <tr><th>Largest brand (TotalEnergies)</th><td class="num">{st['brands'].get('TotalEnergies', 0)}</td></tr>
-          <tr><th>Furthest station from centre</th><td class="num">{st['maxDist']:.2f} km</td></tr>
-        </table></div>
-      </div>
+  <div class="wrap split">
+    <figure><picture><source srcset="/assets/img/pos-tap.webp" type="image/webp" /><img src="/assets/img/pos-tap.jpg" alt="Cliente pagando sin contacto en una terminal inalámbrica junto a una bomba de combustible" loading="lazy" width="1280" height="720" /></picture><figcaption>Imagen ilustrativa.</figcaption></figure>
+    <div>
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>Tres pasos para empezar a cobrar.</h2>
+      <ol class="timeline">
+        <li><strong>Regístrese en línea.</strong> Cinco minutos. Le pedimos los datos de la estación, su resolución del MICM y su RNC.</li>
+        <li><strong>Aprobación e instalación.</strong> El banco patrocinador aprueba el expediente; nuestro equipo instala las terminales y capacita a su personal en el patio.</li>
+        <li><strong>Cobre y reciba.</strong> Chip, sin contacto y billeteras móviles. El dinero llega a su cuenta al día siguiente hábil.</li>
+      </ol>
+      <a class="btn btn-navy" href="/como-funciona/">Ver todos los detalles</a>
     </div>
   </div>
 </section>
 
 <section>
-  <div class="wrap split">
-    <div>
-      <span class="eyebrow">What we bring to the sponsoring bank</span>
-      <h2>A vertical program, not another generic terminal.</h2>
-      <ul class="checklist">
-        <li><strong>Segment underwriting.</strong> Fuel retail is MCC 5541 / 5542. We onboard only licensed stations (MICM resolution, DGII registration, beneficial-owner KYC) and bring the file to the bank ready for review.</li>
-        <li><strong>Gallon-aware pricing.</strong> Interchange-plus with a capped effective rate per gallon, so the station's cost stops scaling with pump prices set weekly by the Ministry.</li>
-        <li><strong>Fuel-grade hardware.</strong> EMV and contactless terminals for forecourt attendants, integrated with pump controllers where available, with pre-authorisation and completion flows that keep chargebacks low.</li>
-        <li><strong>Daily settlement and reporting.</strong> Next-day funding in Dominican pesos, per-station reconciliation and tax-ready statements.</li>
-        <li><strong>Compliance first.</strong> PCI DSS, AML/CFT under Law 155-17, data protection under Law 172-13, sanctions screening and card-network rules, documented on our <a href="/legal/compliance/">compliance page</a>.</li>
-      </ul>
-      <a class="btn btn-navy mt-2" href="/solution/">How the program works</a>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Zona de lanzamiento</span>
+      <h2>Empezamos en el Polígono Central de Santo Domingo.</h2>
+      <p>Las primeras instalaciones se hacen en las {st['n']} estaciones dentro y alrededor del Polígono Central (Av. Kennedy, 27 de Febrero, Churchill y Máximo Gómez). ¿Su estación aparece en el mapa? Regístrela y le damos prioridad en la primera ola. ¿Está en otra zona? Regístrese igual: abrimos por sectores según la demanda.</p>
     </div>
-    <figure>
-      <picture><source srcset="/assets/img/pos-tap.webp" type="image/webp" /><img src="/assets/img/pos-tap.jpg" alt="Customer tapping a contactless card on a wireless payment terminal at a fuel pump" loading="lazy" width="1280" height="720" /></picture>
-      <figcaption>Contactless acceptance at the pump. Illustrative image.</figcaption>
-    </figure>
+    <div class="map-wrap">
+      <div id="map" class="compact" role="region" aria-label="Mapa de la zona de lanzamiento en el Polígono Central"></div>
+      <div class="map-legend"><span><i class="dot inside"></i> Dentro del Polígono Central ({st['inside']})</span><span><i class="dot edge"></i> Borde / adyacente ({st['edge']})</span><span><i class="poly-key"></i> Límite aproximado</span></div>
+    </div>
+    <p class="mt-2"><a href="/zona/">Ver la lista completa de la zona de lanzamiento</a></p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">Lo que incluye</span><h2>Todo lo que necesita una estación, nada de lo que no.</h2></div>
+    <div class="grid grid-3">
+      <div class="card">{icon("card")}<h3>Terminales para el patio</h3><p>Inalámbricas, resistentes, con chip y sin contacto, impresión de recibo y menús en español. Integración con el controlador de surtidores cuando su equipo lo permite.</p></div>
+      <div class="card">{icon("chart")}<h3>Panel del propietario</h3><p>Ventas por bomba, turno y producto; mezcla de tarjetas; contracargos; estados de cuenta descargables para su contador y para la DGII.</p></div>
+      <div class="card">{icon("doc")}<h3>Estados de cuenta claros</h3><p>Verá el intercambio, la tarifa de la red y nuestra tarifa por separado. Sin cargos escondidos ni permanencia mínima abusiva.</p></div>
+      <div class="card">{icon("shield")}<h3>Protección contra fraude</h3><p>Límites por bomba y por tarjeta, cumplimiento EMV y una mesa de disputas que trabaja los contracargos en nombre de la estación.</p></div>
+      <div class="card">{icon("map")}<h3>Soporte en la calle</h3><p>Técnicos en Santo Domingo, en español, con reposición de terminal en horas, no en semanas.</p></div>
+      <div class="card">{icon("bank")}<h3>Respaldo bancario</h3><p>Los fondos se liquidan a través de un banco patrocinador autorizado y las reglas de Visa y Mastercard. Wallet Partners no retiene su dinero.</p></div>
+    </div>
   </div>
 </section>
 
 <section class="dark">
   <div class="wrap">
-    <div class="section-head"><span class="eyebrow">Next step</span><h2>We are ready to present the full program.</h2><p>Merchant files for the twenty stations, the pricing model, the risk framework and our rollout timeline are available under NDA. We would welcome a working session with your merchant-acquiring and compliance teams.</p></div>
-    <div class="hero-actions"><a class="btn btn-primary" href="/contact/">Request the sponsor-bank pack</a><a class="btn btn-ghost" href="/es/">Resumen en español</a></div>
+    <div class="section-head"><span class="eyebrow">Primera ola</span><h2>Reserve su lugar en la primera ola de instalaciones.</h2><p>Registrarse no le compromete a nada. Le contactamos, revisamos juntos su volumen y le presentamos la propuesta con números para su estación.</p></div>
+    <div class="hero-actions"><a class="btn btn-primary" href="/afiliese/">Afilie su estación</a><a class="btn btn-ghost" href="/preguntas/">Preguntas frecuentes</a></div>
   </div>
-</section>
-
-<section class="alt">
-  <div class="wrap">{sources_block(["anadegas_retiro", "dl_41000", "dl_conflicto", "infobae_30", "bcrd_806", "anadegas_1025"])}</div>
 </section>
 """

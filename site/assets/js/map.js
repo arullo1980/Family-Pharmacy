@@ -17,10 +17,10 @@
   // Approximate boundary of the Polígono Central (JFK / 27 de Febrero / Churchill / Máximo Gómez)
   var poly = L.polygon(data.polygon, {
     color: '#b97c00', weight: 2, dashArray: '6 6', fillColor: '#eda100', fillOpacity: 0.08
-  }).addTo(map).bindTooltip('Polígono Central (approximate boundary)', { sticky: true });
+  }).addTo(map).bindTooltip('Polígono Central (límite aproximado)', { sticky: true });
 
   L.circleMarker([data.center.lat, data.center.lng], { radius: 5, color: '#0f2440', fillColor: '#fff', fillOpacity: 1, weight: 2 })
-    .addTo(map).bindTooltip('Reference centre used for distances');
+    .addTo(map).bindTooltip('Centro de referencia para las distancias');
 
   function icon(s) {
     return L.divIcon({
@@ -32,10 +32,10 @@
   function popup(s) {
     return '<h4>' + s.id + '. ' + s.name + '</h4>' +
       '<span class="tag">' + s.brand + '</span>' +
-      '<span class="tag">' + (s.inside ? 'Inside polygon' : 'Adjacent') + '</span>' +
+      '<span class="tag">' + (s.inside ? 'Dentro del polígono' : 'Adyacente') + '</span>' +
       (s.open24h ? '<span class="tag">24 h</span>' : '') +
       '<div>' + s.address + '</div>' +
-      '<div class="muted">' + s.hours + (s.phone ? ' · ' + s.phone : '') + ' · ' + s.distKm.toFixed(2) + ' km from centre</div>' +
+      '<div class="muted">' + s.hours + (s.phone ? ' · ' + s.phone : '') + ' · ' + s.distKm.toFixed(2) + ' km del centro</div>' +
       '<div class="links"><a href="' + s.maps + '" target="_blank" rel="noopener">Google Maps</a>' +
       '<a href="' + s.streetview + '" target="_blank" rel="noopener">Street View</a></div>';
   }
@@ -68,20 +68,21 @@
     layer.clearLayers();
     var shown = stations.filter(matches);
     shown.forEach(function (s) { layer.addLayer(markers[s.id]); });
-    if (countEl) countEl.textContent = shown.length + ' of ' + stations.length + ' stations';
+    if (countEl) countEl.textContent = shown.length + ' de ' + stations.length + ' estaciones';
     if (grid) {
       grid.innerHTML = shown.map(function (s) {
         return '<article class="station" id="st-' + s.id + '" data-id="' + s.id + '">' +
           '<div class="top"><h3>' + s.name + '</h3><span class="n ' + (s.inside ? 'inside' : 'edge') + '">' + s.id + '</span></div>' +
           '<div class="addr">' + s.address + '</div>' +
           '<div class="meta"><span class="tag brand">' + s.brand + '</span>' +
-          '<span class="tag">' + (s.inside ? 'Inside polygon' : 'Adjacent') + '</span>' +
-          (s.open24h ? '<span class="tag h24">Open 24 h</span>' : '<span class="tag">' + s.hours + '</span>') +
+          '<span class="tag">' + (s.inside ? 'Dentro del polígono' : 'Adyacente') + '</span>' +
+          (s.open24h ? '<span class="tag h24">Abierta 24 h</span>' : '<span class="tag">' + s.hours + '</span>') +
           '<span class="tag">' + s.distKm.toFixed(2) + ' km</span></div>' +
-          (s.phone ? '<div class="small muted">' + s.phone + '</div>' : '<div class="small muted">No published phone</div>') +
-          '<div class="links"><a href="#map" data-focus="' + s.id + '">Show on map</a>' +
+          (s.phone ? '<div class="small muted">' + s.phone + '</div>' : '<div class="small muted">Sin teléfono publicado</div>') +
+          '<div class="links"><a href="#map" data-focus="' + s.id + '">Ver en el mapa</a>' +
           '<a href="' + s.maps + '" target="_blank" rel="noopener">Google Maps</a>' +
-          '<a href="' + s.streetview + '" target="_blank" rel="noopener">Street View</a></div></article>';
+          '<a href="' + s.streetview + '" target="_blank" rel="noopener">Street View</a>' +
+          '<a href="/afiliese/?estacion=' + encodeURIComponent(s.name) + '"><strong>¿Es su estación? Regístrela</strong></a></div></article>';
       }).join('');
     }
     if (tbody) {

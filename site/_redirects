@@ -1,10 +1,17 @@
-# Legacy / convenience paths
-/index.html            /             301
-/stations.html         /stations/    301
-/map                   /stations/    301
-/estaciones            /stations/    301
-/mercado               /market/      301
-/privacy               /legal/privacy/    301
-/terms                 /legal/terms/      301
-/compliance            /legal/compliance/ 301
-/es                    /es/          301
+# Old English paths from the first version of the site
+/stations/             /zona/                 301
+/stations              /zona/                 301
+/market/               /bancos/               301
+/solution/             /bancos/               301
+/about/                /nosotros/             301
+/contact/              /contacto/             301
+/es/                   /                      301
+/legal/privacy/        /legal/privacidad/     301
+/legal/terms/          /legal/terminos/       301
+/legal/compliance/     /legal/cumplimiento/   301
+/legal/notice/         /legal/aviso-legal/    301
+/legal/accessibility/  /legal/accesibilidad/  301
+/index.html            /                      301
+/afiliate              /afiliese/             301
+/registro              /afiliese/             301
+/en                    /en/                   301

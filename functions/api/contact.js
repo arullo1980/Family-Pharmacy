@@ -14,7 +14,7 @@ export async function onRequestPost(context) {
   const email = clean(body.email, 200);
   const message = clean(body.message, 4000);
   if (body.website) return json({ ok: true }); // honeypot filled by a bot: pretend success
-  if (!name || !email || !message || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+  if (!name || !email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || (!message && body.type !== 'estacion')) {
     return json({ error: 'Name, a valid email and a message are required.' }, 422);
   }
   if (!env.RESEND_API_KEY || !env.CONTACT_TO) {
@@ -27,8 +27,8 @@ export async function onRequestPost(context) {
       from: env.CONTACT_FROM || 'Wallet Partners Website <noreply@walletpartnersllc.com>',
       to: [env.CONTACT_TO],
       reply_to: email,
-      subject: `Website inquiry from ${name}${org ? ' (' + org + ')' : ''}`,
-      text: `Name: ${name}\nOrganization: ${org}\nEmail: ${email}\nIP country: ${request.cf && request.cf.country}\n\n${message}`
+      subject: `${body.type === 'estacion' ? 'Afiliación de estación' : 'Consulta web'}: ${org || name}`,
+      text: Object.keys(body).filter(k => k !== 'website' && body[k]).map(k => `${k}: ${clean(String(body[k]), 4000)}`).join('\n') + `\n\nIP country: ${request.cf && request.cf.country}`
     })
   });
   if (!res.ok) return json({ error: 'Mail provider rejected the message' }, 502);
