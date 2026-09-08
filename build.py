@@ -67,6 +67,7 @@ def write_data(stations):
         "center": CENTER, "polygon": POLYGON, "stations": stations,
     }
     (d / "stations.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    (d / "stations.js").write_text("window.WP_STATIONS = " + json.dumps(payload, ensure_ascii=False) + ";\n", encoding="utf-8")
     with open(d / "stations.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["id", "name", "brand", "address", "phone", "hours", "open_24h", "zone", "dist_km", "lat", "lng", "google_maps"])
@@ -127,7 +128,7 @@ def layout(page, body, stations_json=None):
     scripts = ""
     if page.get("map"):
         head_extra += '\n  <link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css" />'
-        scripts += f'\n<script>window.WP_STATIONS = {json.dumps(stations_json, ensure_ascii=False)};</script>'
+        scripts += '\n<script src="/data/stations.js"></script>'
         scripts += '\n<script src="/assets/vendor/leaflet/leaflet.js"></script>'
         scripts += '\n<script src="/assets/js/map.js" defer></script>'
     og_image = SITE_URL + page.get("image", "/assets/img/hero-station.jpg")

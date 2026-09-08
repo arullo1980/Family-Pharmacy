@@ -258,7 +258,6 @@ def contact(ctx):
   <div class="card mt-2"><h3>Banks and partners</h3><p>Select "Bank or financial institution" and we send the full presentation after an NDA.</p></div>
 </div>
 </div></section>
-<script>(function(){{var t=new URLSearchParams(location.search).get('tipo');var s=document.getElementById('role');if(t&&s){{s.value=t;}}}})();</script>
 """
 
 def _page(eyebrow, title, intro, content, updated="2026-09-08"):
