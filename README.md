@@ -1,4 +1,4 @@
-# Wallet Partners LLC — fuel-retail payments site (Dominican Republic)
+# Bombero Partners (Wallet Partners LLC) — fuel-retail payments site (Dominican Republic)
 
 Two deliverables in one repository:
 

@@ -18,7 +18,7 @@ def body(ctx):
   <div class="section-head"><span class="eyebrow">Por qué ahora</span><h2>El segmento pidió públicamente otro modelo de precios.</h2><p>En junio y julio de 2026 la asociación de detallistas de combustible amenazó con retirar los verifones de más de 780 estaciones por comisiones porcentuales que consumen entre la cuarta y la tercera parte de un margen regulado. El Gobierno abrió un diálogo con la banca. Un programa con una comisión 25 puntos básicos por debajo del contrato vigente de cada estación, sin mínimo mensual, compensación en dólares, intercambio transparente y controles de nivel bancario ofrece al banco patrocinador una vía defendible para crecer en un segmento de alto volumen mientras los adquirentes tradicionales negocian.</p></div>
   <div class="grid grid-3">
     <div class="card">{icon("bank")}<h3>Lo que hace el banco</h3><p>Membresía de las redes y BIN, aprobación de cada comercio, cuenta de liquidación del programa con reservas, supervisión de segunda línea y reporte regulatorio.</p></div>
-    <div class="card">{icon("pump")}<h3>Lo que hace Wallet Partners</h3><p>Prospección y afiliación, expedientes KYB/KYC listos para revisión, terminales y soporte de campo, monitoreo de primera línea, disputas, liquidación a comercios y reporte al banco.</p></div>
+    <div class="card">{icon("pump")}<h3>Lo que hace Bombero Partners</h3><p>Prospección y afiliación, expedientes KYB/KYC listos para revisión, terminales y soporte de campo, monitoreo de primera línea, disputas, liquidación a comercios y reporte al banco.</p></div>
     <div class="card">{icon("shield")}<h3>Marco de cumplimiento</h3><p>PCI DSS con terminales P2PE, Ley 155-17 (PLA/FT), Ley 172-13 (datos), reglas de Visa y Mastercard para facilitadores de pago, MCC 5541/5542. <a href="/legal/cumplimiento/">Ver el marco completo</a>.</p></div>
   </div>
 </div></section>
@@ -29,7 +29,7 @@ def body(ctx):
     <h2>Un acuerdo de patrocinio y un expediente a la vez.</h2>
     <ul class="checklist">
       <li>Membresía adquirente de Visa y Mastercard en RD, o corresponsalía que permita patrocinar el programa.</li>
-      <li>Registro de Wallet Partners como facilitador de pagos / administrador del programa.</li>
+      <li>Registro de Bombero Partners como facilitador de pagos / administrador del programa.</li>
       <li>Cuenta de liquidación del programa con reservas y reglas de liberación acordadas.</li>
       <li>Aprobación de comercios en diez días hábiles por expediente.</li>
       <li>Un contacto de relación y uno de cumplimiento.</li>

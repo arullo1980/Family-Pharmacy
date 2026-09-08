@@ -1,5 +1,5 @@
 /* TEAM */
-  Company: Wallet Partners LLC
+  Company: Wallet Partners LLC (d/b/a Bombero Partners)
   Contact: info@walletpartnersllc.com
   Location: United States / Santo Domingo, Dominican Republic
 
