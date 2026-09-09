@@ -63,14 +63,7 @@ jobs:
           echo "POST project -> HTTP ${code}"
           cat /tmp/create.json; echo
           [ "$code" = "200" ] || [ "$code" = "201" ] || { echo "::error::Could not create the Pages project. Check the token permissions (Account > Cloudflare Pages > Edit, Account Resources = your account) and the account ID."; exit 1; }
-      - name: Deploy to Cloudflare Pages
-        if: steps.cf.outputs.enabled == 'true'
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy site --project-name=wallet-partners-dr --branch=${{ github.ref_name }}
-      - name: Sync form-email secrets to the Pages project
+      - name: Sync form-email secrets to the Pages project (before deploy so they apply to it)
         if: steps.cf.outputs.enabled == 'true' && github.ref_name == 'main'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -88,3 +81,10 @@ jobs:
           put RESEND_API_KEY "$RESEND_API_KEY"
           [ -n "$CONTACT_TO" ] && put CONTACT_TO "$CONTACT_TO" || true
           [ -n "$CONTACT_FROM" ] && put CONTACT_FROM "$CONTACT_FROM" || true
+      - name: Deploy to Cloudflare Pages
+        if: steps.cf.outputs.enabled == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy site --project-name=wallet-partners-dr --branch=${{ github.ref_name }}
