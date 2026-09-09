@@ -34,15 +34,30 @@ repository variable `SITE_URL` if you ever change it. `security.txt` carries the
 
 **Option C — one-off from a laptop**: `npm run build && npm run deploy` (uses `wrangler.toml`).
 
-## 3. Contact form secrets (Pages → Settings → Variables and Secrets, *Production*)
+## 3. Form email (Resend)
 
-| Name | Value |
-|---|---|
-| `RESEND_API_KEY` | API key from resend.com (free tier is enough); verify the sending domain there first |
-| `CONTACT_TO` | `info@walletpartnersllc.com` |
-| `CONTACT_FROM` | `Wallet Partners Website <noreply@bomberopartners.com.do>` |
+The contact and sign-up forms post to the Pages Function `/api/contact`, which sends the message through
+Resend. The deploy workflow copies the key from GitHub into the Pages project, so nothing is typed into
+Cloudflare by hand.
 
-Until these exist the function returns 503 and the page offers a `mailto:` fallback.
+1. Create a Resend account at https://resend.com using **info@walletpartnersllc.com** (the address that
+   should receive the forms).
+2. Resend → API Keys → Create API Key → name `bombero-website`, permission *Sending access* → copy the key.
+3. GitHub → repo → Settings → Secrets and variables → Actions → New repository secret:
+   `RESEND_API_KEY` = the key.
+4. Re-run the "Build and deploy" workflow (or push to `main`). The step *Sync form-email secrets* stores it
+   in the Pages project. Forms now deliver to info@walletpartnersllc.com from `onboarding@resend.dev`.
+
+**Production sender (optional, recommended before showing the forms to merchants).** Resend's onboarding
+sender can only deliver to the account owner's address. To send from `@bomberopartners.com.do` to anyone:
+
+1. Resend → Domains → Add Domain → `bomberopartners.com.do` (region: US East).
+2. Resend shows three DNS records (a TXT for DKIM at `resend._domainkey`, and an MX plus a TXT at
+   `send.bomberopartners.com.do`). Add them in Cloudflare → DNS, all *DNS only*, exactly as shown.
+   They live on subdomains, so the apex null-MX and `v=spf1 -all` stay in place.
+3. Click *Verify* in Resend. Then in GitHub → Settings → Secrets and variables → Actions → **Variables**:
+   `CONTACT_FROM` = `Bombero Partners <noreply@bomberopartners.com.do>` and, if a different inbox should
+   receive forms, `CONTACT_TO`. Re-run the workflow.
 
 ## 4. Custom domain
 
